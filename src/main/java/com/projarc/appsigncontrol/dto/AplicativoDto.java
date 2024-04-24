@@ -1,11 +1,6 @@
 package com.projarc.appsigncontrol.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
-@Entity
 public class AplicativoDto {
-    @Id
     private long id;
     private String descricao;
 
@@ -22,11 +17,4 @@ public class AplicativoDto {
         return this.descricao;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
 }

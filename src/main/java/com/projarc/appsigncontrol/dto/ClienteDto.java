@@ -1,8 +1,5 @@
 package com.projarc.appsigncontrol.dto;
 
-import jakarta.persistence.Entity;
-
-@Entity
 public class ClienteDto {
     private long id;
     private String name;
@@ -11,18 +8,6 @@ public class ClienteDto {
     public ClienteDto(long id, String name, String email) {
         this.id = id;
         this.name = name;
-        this.email = email;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-    
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
     }
 

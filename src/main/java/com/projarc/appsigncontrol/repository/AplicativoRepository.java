@@ -1,13 +1,14 @@
 package com.projarc.appsigncontrol.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import com.projarc.appsigncontrol.dto.AplicativoDto;
+import com.projarc.appsigncontrol.entity.AplicativoEntity;
 
-import jakarta.persistence.Id;
+import org.springframework.data.repository.CrudRepository;
 
 @Repository
-public class AplicativoRepository extends JpaRepository<AplicativoDto, Id> {
-    
+public class AplicativoRepository extends CrudRepository<AplicativoDto, Long> {
+    List<AplicativoDto> findAll();
 }

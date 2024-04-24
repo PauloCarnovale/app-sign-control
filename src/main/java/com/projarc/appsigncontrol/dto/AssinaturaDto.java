@@ -2,12 +2,7 @@ package com.projarc.appsigncontrol.dto;
 
 import java.util.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
-@Entity
 public class AssinaturaDto {
-    @Id
     private long id;
     private int idAplicativo;
     private int idCliente;
@@ -33,32 +28,11 @@ public class AssinaturaDto {
         return this.idCliente;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setIdAplicativo(int idAplicativo) {
-        this.idAplicativo = idAplicativo;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
     public Date getDataInicio() {
         return this.dataInicio;
-    }
-
-    public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
     }
 
     public Date getDataFim() {
         return this.dataFim;
     }
-
-    public void setDataFim(Date dataFim) {
-        this.dataFim = dataFim;
-    }
-
 }
