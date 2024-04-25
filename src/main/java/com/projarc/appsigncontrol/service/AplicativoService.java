@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.projarc.appsigncontrol.dto.AplicativoDto;
 import com.projarc.appsigncontrol.entity.AplicativoEntity;
 import com.projarc.appsigncontrol.model.AplicativoModel;
 import com.projarc.appsigncontrol.repository.AplicativoRepository;
@@ -31,11 +32,16 @@ public class AplicativoService {
     }
 
     public AplicativoModel getById(long id) {
-        AplicativoEntity aplicativo = aplicativoRepository.findById(id);
+        AplicativoEntity aplicativo = aplicativoRepository.getReferenceById(id);
         if (aplicativo == null) {
             return null;
         } else {
             return AplicativoEntity.toAplicativoModel(aplicativo);
         }
+    }
+
+    public AplicativoEntity create(AplicativoDto payload) {
+        AplicativoEntity aplicativoModel = new AplicativoEntity(payload.getId(), payload.getDescricao());
+        return this.aplicativoRepository.save(aplicativoModel);
     }
 }

@@ -38,7 +38,7 @@ public class AplicativoEntity {
         return new AplicativoEntity(aplicativoModel.getId(), aplicativoModel.getDescricao());
     }
     
-    public static AplicativoModel toAplicativoModel(AplicativoEntity aplicativoEntity){
-        return new AplicativoModel(aplicativoEntity.getId(),aplicativoEntity.getDescricao());
+    public static AplicativoModel toAplicativoModel(AplicativoEntity app){
+        return new AplicativoModel(app.getId(),app.getDescricao());
     }
 }
