@@ -1,4 +1,4 @@
-package gr.hcg.controllers;
+package com.projarc.appsigncontrol.controller;
 
 import com.projarc.appsigncontrol.dto.AplicativoDto;
 import com.projarc.appsigncontrol.entity.AplicativoEntity;
@@ -6,35 +6,18 @@ import com.projarc.appsigncontrol.model.AplicativoModel;
 import com.projarc.appsigncontrol.service.AplicativoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.naming.InvalidNameException;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.security.*;
-import java.security.cert.CertificateException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 
 @Controller
+@RequestMapping("/api/aplicativos")
 public class AplicativoController {
 
     @Autowired
@@ -44,7 +27,7 @@ public class AplicativoController {
         this.aplicativoService = aplicativoService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<AplicativoModel> getAll() {
         return this.aplicativoService.getAll();
     }
@@ -54,8 +37,8 @@ public class AplicativoController {
         return this.aplicativoService.getById(id);
     }
 
-    @PostMapping("/")
-    public AplicativoEntity create(@RequestBody AplicativoDto payload ) {
+    @PostMapping
+    public AplicativoEntity create(@RequestBody AplicativoDto payload) {
         return this.aplicativoService.create(payload);
     }
 }

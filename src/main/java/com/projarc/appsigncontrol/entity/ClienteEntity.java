@@ -1,9 +1,11 @@
 package com.projarc.appsigncontrol.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class ClienteEntity {
+    @Id
     private long id;
     private String name;
     private String email;

@@ -42,6 +42,6 @@ public class AplicativoService {
 
     public AplicativoEntity create(AplicativoDto payload) {
         AplicativoEntity aplicativoModel = new AplicativoEntity(payload.getId(), payload.getDescricao());
-        return this.aplicativoRepository.save(aplicativoModel);
+        return this.aplicativoRepository.saveAndFlush(aplicativoModel);
     }
 }
