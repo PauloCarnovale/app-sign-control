@@ -1,13 +1,23 @@
 package com.projarc.appsigncontrol.entity;
 
+import com.projarc.appsigncontrol.model.ClienteModel;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "clientes")
 public class ClienteEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "name", nullable = false, length = 255)
     private String name;
+    @Column(name = "email", nullable = false, length = 255)
     private String email;
 
     public ClienteEntity(long id, String name, String email) {
@@ -38,5 +48,13 @@ public class ClienteEntity {
 
     public String getEmail() {
         return this.email;
+    }
+
+    public static ClienteEntity fromClienteModel(ClienteModel clienteModel) {
+        return new ClienteEntity(clienteModel.getId(), clienteModel.getName(), clienteModel.getEmail());
+    }
+    
+    public static ClienteModel toClienteModel(ClienteEntity clienteEntity){
+        return new ClienteModel(clienteEntity.getId(), clienteEntity.getName(), clienteEntity.getEmail());
     }
 }
