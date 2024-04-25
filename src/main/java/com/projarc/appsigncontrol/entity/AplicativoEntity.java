@@ -1,5 +1,7 @@
 package com.projarc.appsigncontrol.entity;
 
+import com.projarc.appsigncontrol.model.AplicativoModel;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -8,6 +10,8 @@ public class AplicativoEntity {
     @Id
     private long id;
     private String descricao;
+
+    protected AplicativoEntity(){ }
 
     public AplicativoEntity(long id, String descricao) {
         this.id = id;
@@ -28,5 +32,13 @@ public class AplicativoEntity {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public static AplicativoEntity fromAplicativoModel(AplicativoModel aplicativoModel) {
+        return new AplicativoEntity(aplicativoModel.getId(), aplicativoModel.getDescricao());
+    }
+    
+    public static AplicativoModel toAplicativoModel(AplicativoEntity aplicativoEntity){
+        return new AplicativoModel(aplicativoEntity.getId(),aplicativoEntity.getDescricao());
     }
 }
