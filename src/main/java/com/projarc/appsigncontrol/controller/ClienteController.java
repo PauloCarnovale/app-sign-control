@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/api/clientes")
 public class ClienteController {
@@ -24,7 +23,7 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    public ClienteController(ClienteService clienteService){
+    public ClienteController(ClienteService clienteService) {
         this.clienteService = clienteService;
     }
 
@@ -33,13 +32,13 @@ public class ClienteController {
     public List<ClienteModel> getAll() {
         return this.clienteService.getAll();
     }
-    
+
     @GetMapping("/{id}")
     @CrossOrigin(origins = "*")
     public ClienteModel getById(@PathVariable Long id) {
         return this.clienteService.getById(id);
     }
-    
+
     @PostMapping
     @CrossOrigin(origins = "*")
     public ClienteEntity create(@RequestBody ClienteDto payload) {

@@ -2,6 +2,7 @@ package com.projarc.appsigncontrol.model;
 
 import com.projarc.appsigncontrol.dto.AplicativoDto;
 
+
 public class AplicativoModel {
     
     private long id;

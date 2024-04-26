@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,11 +20,12 @@ public class AplicativoEntity {
     @Column(name = "descricao", nullable = false, length = 255)
     private String descricao;
 
-    public AplicativoEntity(){ }
-
     public AplicativoEntity(long id, String descricao) {
         this.id = id;
         this.descricao = descricao;
+    }
+
+    public AplicativoEntity() {
     }
 
     public long getId() {
@@ -45,8 +47,8 @@ public class AplicativoEntity {
     public static AplicativoEntity fromAplicativoModel(AplicativoModel aplicativoModel) {
         return new AplicativoEntity(aplicativoModel.getId(), aplicativoModel.getDescricao());
     }
-    
-    public static AplicativoModel toAplicativoModel(AplicativoEntity app){
-        return new AplicativoModel(app.getId(),app.getDescricao());
+
+    public static AplicativoModel toAplicativoModel(AplicativoEntity app) {
+        return new AplicativoModel(app.getId(), app.getDescricao());
     }
 }

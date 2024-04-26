@@ -1,38 +1,41 @@
 package com.projarc.appsigncontrol.dto;
 
-import java.util.Date;
+import com.projarc.appsigncontrol.entity.AplicativoEntity;
+import com.projarc.appsigncontrol.entity.ClienteEntity;
 
 public class AssinaturaDto {
     private long id;
-    private int idAplicativo;
-    private int idCliente;
-    private Date dataInicio;
-    private Date dataFim;
+    private AplicativoEntity aplicativo;
+    private ClienteEntity cliente;
+    private String dataInicio;
+    private String dataFim;
 
-    public AssinaturaDto(int idAplicativo, int idCliente, Date dataInicio, Date dataFim) {
-        this.idAplicativo = idAplicativo;
-        this.idCliente = idCliente;
+    public AssinaturaDto(long id, AplicativoEntity aplicativo, ClienteEntity cliente, String dataInicio,
+            String dataFim) {
+        this.id = id;
+        this.aplicativo = aplicativo;
+        this.cliente = cliente;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
     }
 
-    public int getAplicativo() {
-        return this.idAplicativo;
+    public AplicativoEntity getAplicativo() {
+        return this.aplicativo;
     }
 
     public long getId() {
         return this.id;
     }
 
-    public int getCliente() {
-        return this.idCliente;
+    public ClienteEntity getCliente() {
+        return this.cliente;
     }
 
-    public Date getDataInicio() {
+    public String getDataInicio() {
         return this.dataInicio;
     }
 
-    public Date getDataFim() {
+    public String getDataFim() {
         return this.dataFim;
     }
 }
