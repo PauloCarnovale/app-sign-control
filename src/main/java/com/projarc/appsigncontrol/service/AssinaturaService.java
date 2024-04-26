@@ -51,7 +51,6 @@ public class AssinaturaService {
     }
 
     public AssinaturaEntity create(AssinaturaDto payload) {
-        System.out.println(payload.toString());
         AplicativoEntity aplicativo = aplicativoRepository.getReferenceById(payload.getAplicativo());
         ClienteEntity cliente = clienteRepository.getReferenceById(payload.getCliente());
         if (aplicativo == null || cliente == null)
