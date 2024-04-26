@@ -29,19 +29,20 @@ public class AssinaturaController {
 
     @GetMapping
     @CrossOrigin(origins = "*")
-    public List<AssinaturaModel> getAll() {
+    public List<AssinaturaDto> getAll() {
         return this.assinaturaService.getAll();
     }
 
     @GetMapping("/{id}")
     @CrossOrigin(origins = "*")
-    public AssinaturaModel getById(@PathVariable Long id) {
+    public AssinaturaDto getById(@PathVariable Long id) {
         return this.assinaturaService.getById(id);
     }
 
     @PostMapping
     @CrossOrigin(origins = "*")
-    public AssinaturaEntity create(@RequestBody AssinaturaDto payload) {
-        return this.assinaturaService.create(payload);
+    public AssinaturaDto create(@RequestBody AssinaturaDto payload) {
+        AssinaturaEntity assinatura = this.assinaturaService.create(payload);
+        return AssinaturaEntity.toAssinaturaDto(assinatura);
     }
 }

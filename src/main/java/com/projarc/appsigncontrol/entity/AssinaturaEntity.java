@@ -1,8 +1,6 @@
 package com.projarc.appsigncontrol.entity;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import com.projarc.appsigncontrol.dto.AssinaturaDto;
 import com.projarc.appsigncontrol.model.AssinaturaModel;
 
 import jakarta.persistence.Column;
@@ -97,5 +95,10 @@ public class AssinaturaEntity {
     public static AssinaturaModel toAssinaturaModel(AssinaturaEntity assinaturaEntity) {
         return new AssinaturaModel(assinaturaEntity.getId(), assinaturaEntity.getAplicativo(),
                 assinaturaEntity.getCliente(), assinaturaEntity.getDataInicio(), assinaturaEntity.getDataFim());
+    }
+
+    public static AssinaturaDto toAssinaturaDto(AssinaturaEntity assinaturaEntity) {
+        return new AssinaturaDto(assinaturaEntity.getId(), assinaturaEntity.getAplicativo().getId(),
+                assinaturaEntity.getCliente().getId(), assinaturaEntity.getDataInicio(), assinaturaEntity.getDataFim());
     }
 }

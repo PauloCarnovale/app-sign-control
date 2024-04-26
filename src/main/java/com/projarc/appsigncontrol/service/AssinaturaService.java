@@ -30,23 +30,23 @@ public class AssinaturaService {
         this.clienteRepository = clienteRepository;
     }
 
-    public List<AssinaturaModel> getAll() {
+    public List<AssinaturaDto> getAll() {
         List<AssinaturaEntity> assinaturas = this.assinaturaRepository.findAll();
         if (assinaturas.size() == 0) {
-            return new LinkedList<AssinaturaModel>();
+            return new LinkedList<AssinaturaDto>();
         } else {
             return assinaturas.stream()
-                    .map(assinatura -> AssinaturaEntity.toAssinaturaModel(assinatura))
+                    .map(assinatura -> AssinaturaEntity.toAssinaturaDto(assinatura))
                     .toList();
         }
     }
 
-    public AssinaturaModel getById(long id) {
+    public AssinaturaDto getById(long id) {
         AssinaturaEntity assinatura = assinaturaRepository.getReferenceById(id);
         if (assinatura == null) {
             return null;
         } else {
-            return AssinaturaEntity.toAssinaturaModel(assinatura);
+            return AssinaturaEntity.toAssinaturaDto(assinatura);
         }
     }
 
