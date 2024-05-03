@@ -27,32 +27,16 @@ public class AssinaturaDto {
         return this.idAplicativo;
     }
 
-    public void setIdAplicativo(long idAplicativo) {
-        this.idAplicativo = idAplicativo;
-    }
-
     public long getIdCliente() {
         return this.idCliente;
-    }
-
-    public void setIdCliente(long idCliente) {
-        this.idCliente = idCliente;
     }
 
     public String getInicioVigencia() {
         return this.inicioVigencia;
     }
 
-    public void setInicioVigencia(String inicioVigencia) {
-        this.inicioVigencia = inicioVigencia;
-    }
-
     public String getFimVigencia() {
         return this.fimVigencia;
-    }
-
-    public void setFimVigencia(String fimVigencia) {
-        this.fimVigencia = fimVigencia;
     }
 
 }

@@ -19,7 +19,7 @@ public class AplicativoEntity {
     @Column(name = "nome", nullable = false, length = 255)
     private String nome;
 
-    @Column(name = "custoMensal", nullable = false)
+    @Column(name = "custo_mensal", nullable = false)
     private double custoMensal;
 
     public AplicativoEntity(long id, String nome, double custoMensal) {
