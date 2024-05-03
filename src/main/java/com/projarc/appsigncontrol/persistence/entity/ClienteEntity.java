@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,8 +16,8 @@ public class ClienteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name", nullable = false, length = 255)
-    private String name;
+    @Column(name = "nome", nullable = false, length = 255)
+    private String nome;
 
     @Column(name = "email", nullable = false, length = 255)
     private String email;
@@ -26,9 +25,9 @@ public class ClienteEntity {
     public ClienteEntity() {
     }
 
-    public ClienteEntity(long id, String name, String email) {
+    public ClienteEntity(long id, String nome, String email) {
         this.id = id;
-        this.name = name;
+        this.nome = nome;
         this.email = email;
     }
 
@@ -36,8 +35,8 @@ public class ClienteEntity {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public void setEmail(String email) {
@@ -48,8 +47,8 @@ public class ClienteEntity {
         return this.id;
     }
 
-    public String getName() {
-        return this.name;
+    public String getNome() {
+        return this.nome;
     }
 
     public String getEmail() {
@@ -61,6 +60,6 @@ public class ClienteEntity {
     }
 
     public static ClienteModel toClienteModel(ClienteEntity clienteEntity) {
-        return new ClienteModel(clienteEntity.getId(), clienteEntity.getName(), clienteEntity.getEmail());
+        return new ClienteModel(clienteEntity.getId(), clienteEntity.getNome(), clienteEntity.getEmail());
     }
 }

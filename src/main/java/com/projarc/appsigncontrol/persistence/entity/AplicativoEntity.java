@@ -16,12 +16,16 @@ public class AplicativoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "descricao", nullable = false, length = 255)
-    private String descricao;
+    @Column(name = "nome", nullable = false, length = 255)
+    private String nome;
 
-    public AplicativoEntity(long id, String descricao) {
+    @Column(name = "custoMensal", nullable = false)
+    private double custoMensal;
+
+    public AplicativoEntity(long id, String nome, double custoMensal) {
         this.id = id;
-        this.descricao = descricao;
+        this.nome = nome;
+        this.custoMensal = custoMensal;
     }
 
     public AplicativoEntity() {
@@ -31,23 +35,33 @@ public class AplicativoEntity {
         return this.id;
     }
 
-    public String getDescricao() {
-        return this.descricao;
-    }
-
     public void setId(long id) {
         this.id = id;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public double getCustoMensal() {
+        return this.custoMensal;
+    }
+
+    public void setCustoMensal(double custoMensal) {
+        this.custoMensal = custoMensal;
     }
 
     public static AplicativoEntity fromAplicativoModel(AplicativoModel aplicativoModel) {
-        return new AplicativoEntity(aplicativoModel.getId(), aplicativoModel.getDescricao());
+        return new AplicativoEntity(aplicativoModel.getId(), aplicativoModel.getNome(),
+                aplicativoModel.getCustoMensal());
     }
 
-    public static AplicativoModel toAplicativoModel(AplicativoEntity app) {
-        return new AplicativoModel(app.getId(), app.getDescricao());
+    public static AplicativoModel toAplicativoModel(AplicativoEntity aplicativoEntity) {
+        return new AplicativoModel(aplicativoEntity.getId(), aplicativoEntity.getNome(),
+                aplicativoEntity.getCustoMensal());
     }
 }

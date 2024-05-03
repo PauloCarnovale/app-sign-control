@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
-import com.projarc.appsigncontrol.domain.model.AssinaturaModel;
 import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
 import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
 import com.projarc.appsigncontrol.persistence.entity.ClienteEntity;
@@ -51,13 +50,13 @@ public class AssinaturaService {
     }
 
     public AssinaturaEntity create(AssinaturaDto payload) {
-        AplicativoEntity aplicativo = aplicativoRepository.getReferenceById(payload.getAplicativo());
-        ClienteEntity cliente = clienteRepository.getReferenceById(payload.getCliente());
+        AplicativoEntity aplicativo = aplicativoRepository.getReferenceById(payload.getIdAplicativo());
+        ClienteEntity cliente = clienteRepository.getReferenceById(payload.getIdCliente());
         if (aplicativo == null || cliente == null)
             throw new InvalidParameterException();
 
         AssinaturaEntity assinaturaEntity = new AssinaturaEntity(payload.getId(), aplicativo,
-                cliente, payload.getDataInicio(), payload.getDataFim());
+                cliente, payload.getInicioVigencia(), payload.getFimVigencia());
         return this.assinaturaRepository.saveAndFlush(assinaturaEntity);
     }
 }

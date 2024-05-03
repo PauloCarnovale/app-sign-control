@@ -4,35 +4,55 @@ public class AssinaturaDto {
     private long id;
     private long idAplicativo;
     private long idCliente;
-    private String dataInicio;
-    private String dataFim;
+    private String inicioVigencia;
+    private String fimVigencia;
 
-    public AssinaturaDto(long id, long idAplicativo, long idCliente, String dataInicio,
-            String dataFim) {
+    public AssinaturaDto(long id, long idAplicativo, long idCliente, String inicioVigencia, String fimVigencia) {
         this.id = id;
         this.idAplicativo = idAplicativo;
         this.idCliente = idCliente;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-    }
-
-    public long getAplicativo() {
-        return this.idAplicativo;
+        this.inicioVigencia = inicioVigencia;
+        this.fimVigencia = fimVigencia;
     }
 
     public long getId() {
         return this.id;
     }
 
-    public long getCliente() {
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getIdAplicativo() {
+        return this.idAplicativo;
+    }
+
+    public void setIdAplicativo(long idAplicativo) {
+        this.idAplicativo = idAplicativo;
+    }
+
+    public long getIdCliente() {
         return this.idCliente;
     }
 
-    public String getDataInicio() {
-        return this.dataInicio;
+    public void setIdCliente(long idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public String getDataFim() {
-        return this.dataFim;
+    public String getInicioVigencia() {
+        return this.inicioVigencia;
     }
+
+    public void setInicioVigencia(String inicioVigencia) {
+        this.inicioVigencia = inicioVigencia;
+    }
+
+    public String getFimVigencia() {
+        return this.fimVigencia;
+    }
+
+    public void setFimVigencia(String fimVigencia) {
+        this.fimVigencia = fimVigencia;
+    }
+
 }

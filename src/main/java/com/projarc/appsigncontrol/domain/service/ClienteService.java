@@ -41,7 +41,7 @@ public class ClienteService {
     }
 
     public ClienteEntity create(ClienteDto payload) {
-        ClienteEntity clienteModel = new ClienteEntity(payload.getId(), payload.getName(), payload.getEmail());
+        ClienteEntity clienteModel = new ClienteEntity(payload.getId(), payload.getNome(), payload.getEmail());
         return this.clienteRepository.saveAndFlush(clienteModel);
     }
 }

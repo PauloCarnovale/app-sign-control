@@ -27,23 +27,23 @@ public class AssinaturaEntity {
     @JoinColumn(name = "id_cliente")
     private ClienteEntity cliente;
 
-    @Column(name = "data_inicio", nullable = false)
-    private String dataInicio;
+    @Column(name = "inicio_vigencia", nullable = false)
+    private String inicioVigencia;
 
-    @Column(name = "data_fim", nullable = false)
-    private String dataFim;
+    @Column(name = "fimVigencia", nullable = false)
+    private String fimVigencia;
 
     public AssinaturaEntity() {
 
     }
 
-    public AssinaturaEntity(long id, AplicativoEntity aplicativo, ClienteEntity cliente, String dataInicio,
-            String dataFim) {
+    public AssinaturaEntity(long id, AplicativoEntity aplicativo, ClienteEntity cliente, String inicioVigencia,
+            String fimVigencia) {
         this.id = id;
         this.aplicativo = aplicativo;
         this.cliente = cliente;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
+        this.inicioVigencia = inicioVigencia;
+        this.fimVigencia = fimVigencia;
     }
 
     public long getId() {
@@ -70,20 +70,20 @@ public class AssinaturaEntity {
         this.cliente = cliente;
     }
 
-    public String getDataInicio() {
-        return this.dataInicio;
+    public String getInicioVigencia() {
+        return this.inicioVigencia;
     }
 
-    public void setDataInicio(String dataInicio) {
-        this.dataInicio = dataInicio;
+    public void setInicioVigencia(String inicioVigencia) {
+        this.inicioVigencia = inicioVigencia;
     }
 
-    public String getDataFim() {
-        return this.dataFim;
+    public String getFimVigencia() {
+        return this.fimVigencia;
     }
 
-    public void setDataFim(String dataFim) {
-        this.dataFim = dataFim;
+    public void setDataFim(String fimVigencia) {
+        this.fimVigencia = fimVigencia;
     }
 
     public static AssinaturaEntity fromAssinaturaModel(AssinaturaModel assinaturaModel) {
@@ -93,11 +93,12 @@ public class AssinaturaEntity {
 
     public static AssinaturaModel toAssinaturaModel(AssinaturaEntity assinaturaEntity) {
         return new AssinaturaModel(assinaturaEntity.getId(), assinaturaEntity.getAplicativo(),
-                assinaturaEntity.getCliente(), assinaturaEntity.getDataInicio(), assinaturaEntity.getDataFim());
+                assinaturaEntity.getCliente(), assinaturaEntity.getInicioVigencia(), assinaturaEntity.getFimVigencia());
     }
 
     public static AssinaturaDto toAssinaturaDto(AssinaturaEntity assinaturaEntity) {
         return new AssinaturaDto(assinaturaEntity.getId(), assinaturaEntity.getAplicativo().getId(),
-                assinaturaEntity.getCliente().getId(), assinaturaEntity.getDataInicio(), assinaturaEntity.getDataFim());
+                assinaturaEntity.getCliente().getId(), assinaturaEntity.getInicioVigencia(),
+                assinaturaEntity.getFimVigencia());
     }
 }
