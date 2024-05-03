@@ -1,10 +1,9 @@
-package com.projarc.appsigncontrol.model;
+package com.projarc.appsigncontrol.domain.model;
 
-import com.projarc.appsigncontrol.dto.AplicativoDto;
-
+import com.projarc.appsigncontrol.application.dto.AplicativoDto;
 
 public class AplicativoModel {
-    
+
     private long id;
     private String descricao;
 
@@ -29,7 +28,7 @@ public class AplicativoModel {
         this.descricao = descricao;
     }
 
-    public static AplicativoDto fromModel(AplicativoModel aplicativoModel){
+    public static AplicativoDto fromModel(AplicativoModel aplicativoModel) {
         return new AplicativoDto(aplicativoModel.getId(), aplicativoModel.getDescricao());
     }
 }

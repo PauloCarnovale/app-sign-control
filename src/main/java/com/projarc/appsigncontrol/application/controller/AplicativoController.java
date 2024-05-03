@@ -1,9 +1,9 @@
-package com.projarc.appsigncontrol.controller;
+package com.projarc.appsigncontrol.application.controller;
 
-import com.projarc.appsigncontrol.dto.AplicativoDto;
-import com.projarc.appsigncontrol.entity.AplicativoEntity;
-import com.projarc.appsigncontrol.model.AplicativoModel;
-import com.projarc.appsigncontrol.service.AplicativoService;
+import com.projarc.appsigncontrol.application.dto.AplicativoDto;
+import com.projarc.appsigncontrol.domain.model.AplicativoModel;
+import com.projarc.appsigncontrol.domain.service.AplicativoService;
+import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/api/aplicativos")
 public class AplicativoController {
@@ -24,7 +23,7 @@ public class AplicativoController {
     @Autowired
     private AplicativoService aplicativoService;
 
-    public AplicativoController(AplicativoService aplicativoService){
+    public AplicativoController(AplicativoService aplicativoService) {
         this.aplicativoService = aplicativoService;
     }
 
@@ -33,13 +32,13 @@ public class AplicativoController {
     public List<AplicativoModel> getAll() {
         return this.aplicativoService.getAll();
     }
-    
+
     @GetMapping("/{id}")
     @CrossOrigin(origins = "*")
     public AplicativoModel getById(@PathVariable Long id) {
         return this.aplicativoService.getById(id);
     }
-    
+
     @PostMapping
     @CrossOrigin(origins = "*")
     public AplicativoEntity create(@RequestBody AplicativoDto payload) {

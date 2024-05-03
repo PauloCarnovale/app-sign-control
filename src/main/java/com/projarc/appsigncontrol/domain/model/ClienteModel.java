@@ -1,6 +1,6 @@
-package com.projarc.appsigncontrol.model;
+package com.projarc.appsigncontrol.domain.model;
 
-import com.projarc.appsigncontrol.dto.ClienteDto;
+import com.projarc.appsigncontrol.application.dto.ClienteDto;
 
 public class ClienteModel {
     private long id;
@@ -25,7 +25,7 @@ public class ClienteModel {
         return this.email;
     }
 
-        public static ClienteDto fromModel(ClienteModel clienteModel){
+    public static ClienteDto fromModel(ClienteModel clienteModel) {
         return new ClienteDto(clienteModel.getId(), clienteModel.getName(), clienteModel.getEmail());
     }
 }

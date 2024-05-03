@@ -1,4 +1,4 @@
-package com.projarc.appsigncontrol.service;
+package com.projarc.appsigncontrol.domain.service;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -6,20 +6,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.projarc.appsigncontrol.dto.ClienteDto;
-import com.projarc.appsigncontrol.entity.ClienteEntity;
-import com.projarc.appsigncontrol.model.ClienteModel;
-import com.projarc.appsigncontrol.repository.ClienteRepository;
+import com.projarc.appsigncontrol.application.dto.ClienteDto;
+import com.projarc.appsigncontrol.domain.model.ClienteModel;
+import com.projarc.appsigncontrol.persistence.entity.ClienteEntity;
+import com.projarc.appsigncontrol.persistence.repository.ClienteRepository;
 
 @Service
 public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
-    
-    public ClienteService(ClienteRepository clienteRepository){
+
+    public ClienteService(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
- 
+
     public List<ClienteModel> getAll() {
         List<ClienteEntity> clientes = this.clienteRepository.findAll();
         if (clientes.size() == 0) {

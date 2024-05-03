@@ -1,7 +1,7 @@
-package com.projarc.appsigncontrol.model;
+package com.projarc.appsigncontrol.domain.model;
 
-import com.projarc.appsigncontrol.entity.AplicativoEntity;
-import com.projarc.appsigncontrol.entity.ClienteEntity;
+import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
+import com.projarc.appsigncontrol.persistence.entity.ClienteEntity;
 
 public class AssinaturaModel {
     private long id;

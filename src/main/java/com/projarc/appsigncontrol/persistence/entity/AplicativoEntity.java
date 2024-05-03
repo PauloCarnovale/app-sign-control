@@ -1,6 +1,6 @@
-package com.projarc.appsigncontrol.entity;
+package com.projarc.appsigncontrol.persistence.entity;
 
-import com.projarc.appsigncontrol.model.AplicativoModel;
+import com.projarc.appsigncontrol.domain.model.AplicativoModel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

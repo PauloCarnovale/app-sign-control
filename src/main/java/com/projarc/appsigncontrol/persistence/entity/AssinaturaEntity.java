@@ -1,11 +1,10 @@
-package com.projarc.appsigncontrol.entity;
+package com.projarc.appsigncontrol.persistence.entity;
 
-import com.projarc.appsigncontrol.dto.AssinaturaDto;
-import com.projarc.appsigncontrol.model.AssinaturaModel;
+import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
+import com.projarc.appsigncontrol.domain.model.AssinaturaModel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;

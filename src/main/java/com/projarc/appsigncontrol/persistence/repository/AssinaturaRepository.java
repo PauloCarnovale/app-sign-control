@@ -1,10 +1,10 @@
-package com.projarc.appsigncontrol.repository;
+package com.projarc.appsigncontrol.persistence.repository;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
 
-import com.projarc.appsigncontrol.entity.AssinaturaEntity;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

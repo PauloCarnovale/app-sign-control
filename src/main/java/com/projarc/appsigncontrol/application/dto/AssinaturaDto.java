@@ -1,4 +1,4 @@
-package com.projarc.appsigncontrol.dto;
+package com.projarc.appsigncontrol.application.dto;
 
 public class AssinaturaDto {
     private long id;

@@ -1,4 +1,4 @@
-package com.projarc.appsigncontrol.service;
+package com.projarc.appsigncontrol.domain.service;
 
 import java.security.InvalidParameterException;
 import java.util.LinkedList;
@@ -7,14 +7,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.projarc.appsigncontrol.dto.AssinaturaDto;
-import com.projarc.appsigncontrol.entity.AplicativoEntity;
-import com.projarc.appsigncontrol.entity.AssinaturaEntity;
-import com.projarc.appsigncontrol.entity.ClienteEntity;
-import com.projarc.appsigncontrol.model.AssinaturaModel;
-import com.projarc.appsigncontrol.repository.AplicativoRepository;
-import com.projarc.appsigncontrol.repository.AssinaturaRepository;
-import com.projarc.appsigncontrol.repository.ClienteRepository;
+import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
+import com.projarc.appsigncontrol.domain.model.AssinaturaModel;
+import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
+import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
+import com.projarc.appsigncontrol.persistence.entity.ClienteEntity;
+import com.projarc.appsigncontrol.persistence.repository.AplicativoRepository;
+import com.projarc.appsigncontrol.persistence.repository.AssinaturaRepository;
+import com.projarc.appsigncontrol.persistence.repository.ClienteRepository;
 
 @Service
 public class AssinaturaService {

@@ -1,4 +1,4 @@
-package com.projarc.appsigncontrol.service;
+package com.projarc.appsigncontrol.domain.service;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -6,20 +6,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.projarc.appsigncontrol.dto.AplicativoDto;
-import com.projarc.appsigncontrol.entity.AplicativoEntity;
-import com.projarc.appsigncontrol.model.AplicativoModel;
-import com.projarc.appsigncontrol.repository.AplicativoRepository;
+import com.projarc.appsigncontrol.application.dto.AplicativoDto;
+import com.projarc.appsigncontrol.domain.model.AplicativoModel;
+import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
+import com.projarc.appsigncontrol.persistence.repository.AplicativoRepository;
 
 @Service
 public class AplicativoService {
     @Autowired
     private AplicativoRepository aplicativoRepository;
-    
-    public AplicativoService(AplicativoRepository aplicativoRepository){
+
+    public AplicativoService(AplicativoRepository aplicativoRepository) {
         this.aplicativoRepository = aplicativoRepository;
     }
- 
+
     public List<AplicativoModel> getAll() {
         List<AplicativoEntity> aplicativos = aplicativoRepository.findAll();
         if (aplicativos.size() == 0) {

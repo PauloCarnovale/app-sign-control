@@ -1,9 +1,9 @@
-package com.projarc.appsigncontrol.controller;
+package com.projarc.appsigncontrol.application.controller;
 
-import com.projarc.appsigncontrol.dto.AssinaturaDto;
-import com.projarc.appsigncontrol.entity.AssinaturaEntity;
-import com.projarc.appsigncontrol.model.AssinaturaModel;
-import com.projarc.appsigncontrol.service.AssinaturaService;
+import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
+import com.projarc.appsigncontrol.domain.model.AssinaturaModel;
+import com.projarc.appsigncontrol.domain.service.AssinaturaService;
+import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
