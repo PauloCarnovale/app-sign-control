@@ -78,7 +78,21 @@ public class AssinaturaService {
 
     }
 
-    public AssinaturaEntity create(AssinaturaDto payload) {
+    public List<AssinaturaModel> getByClient(int id) {
+        List<AssinaturaEntity> assinaturas = this.assinaturaRepository.findAll();
+
+        List<AssinaturaModel> assinaturasModel = assinaturas.stream()
+                .map(assinatura -> AssinaturaEntity.toAssinaturaModel(assinatura))
+                .toList();
+
+        List<AssinaturaModel> filteredAssinaturas = assinaturasModel.stream()
+                .filter(assinatura -> assinatura.getCliente().getId() == id)
+                .collect(Collectors.toList());
+
+        return filteredAssinaturas;
+    }
+
+    public AssinaturaDto create(AssinaturaDto payload) {
         AplicativoEntity aplicativo = aplicativoRepository.getReferenceById(payload.getIdAplicativo());
         ClienteEntity cliente = clienteRepository.getReferenceById(payload.getIdCliente());
         if (aplicativo == null || cliente == null)
@@ -89,6 +103,8 @@ public class AssinaturaService {
         assinaturaEntity.setCliente(cliente);
         assinaturaEntity.setInicioVigencia(LocalDate.now());
         assinaturaEntity.setDataFim(assinaturaEntity.getInicioVigencia().plusDays(7));
-        return this.assinaturaRepository.saveAndFlush(assinaturaEntity);
+
+        AssinaturaEntity createdAssinatura = this.assinaturaRepository.saveAndFlush(assinaturaEntity);
+        return AssinaturaEntity.toAssinaturaDto(createdAssinatura);
     }
 }

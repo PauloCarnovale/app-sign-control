@@ -34,12 +34,6 @@ public class AssinaturaController {
         return this.assinaturaService.getAll();
     }
 
-    // @GetMapping("/{id}")
-    // @CrossOrigin(origins = "*")
-    // public AssinaturaDto getById(@PathVariable Long id) {
-    // return this.assinaturaService.getById(id);
-    // }
-
     @GetMapping("/{type}")
     @CrossOrigin(origins = "*")
     public List<AssinaturaModel> getByType(@PathVariable String type) {
@@ -49,7 +43,12 @@ public class AssinaturaController {
     @PostMapping
     @CrossOrigin(origins = "*")
     public AssinaturaDto create(@RequestBody AssinaturaDto payload) {
-        AssinaturaEntity assinatura = this.assinaturaService.create(payload);
-        return AssinaturaEntity.toAssinaturaDto(assinatura);
+        return this.assinaturaService.create(payload);
     }
+
+    @GetMapping("/asscli/{codcli}")
+    public List<AssinaturaModel> getAssinaturasCliente(@PathVariable int codcli) {
+        return this.assinaturaService.getByClient(codcli);
+    }
+
 }
