@@ -1,10 +1,8 @@
 package com.projarc.appsigncontrol.application.controller;
 
 import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
-import com.projarc.appsigncontrol.domain.model.AplicativoModel;
 import com.projarc.appsigncontrol.domain.model.AssinaturaModel;
 import com.projarc.appsigncontrol.domain.service.AssinaturaService;
-import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,7 +28,7 @@ public class AssinaturaController {
 
     @GetMapping
     @CrossOrigin(origins = "*")
-    public List<AssinaturaDto> getAll() {
+    public List<AssinaturaModel> getAll() {
         return this.assinaturaService.getAll();
     }
 

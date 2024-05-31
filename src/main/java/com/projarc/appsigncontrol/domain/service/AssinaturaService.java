@@ -34,13 +34,13 @@ public class AssinaturaService {
         this.clienteRepository = clienteRepository;
     }
 
-    public List<AssinaturaDto> getAll() {
+    public List<AssinaturaModel> getAll() {
         List<AssinaturaEntity> assinaturas = this.assinaturaRepository.findAll();
         if (assinaturas.size() == 0) {
-            return new LinkedList<AssinaturaDto>();
+            return new LinkedList<AssinaturaModel>();
         } else {
             return assinaturas.stream()
-                    .map(assinatura -> AssinaturaEntity.toAssinaturaDto(assinatura))
+                    .map(assinatura -> AssinaturaEntity.toAssinaturaModel(assinatura))
                     .toList();
         }
     }
