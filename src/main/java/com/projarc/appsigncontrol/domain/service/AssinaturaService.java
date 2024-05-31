@@ -92,6 +92,20 @@ public class AssinaturaService {
         return filteredAssinaturas;
     }
 
+    public List<AssinaturaModel> getByApp(int id) {
+        List<AssinaturaEntity> assinaturas = this.assinaturaRepository.findAll();
+
+        List<AssinaturaModel> assinaturasModel = assinaturas.stream()
+                .map(assinatura -> AssinaturaEntity.toAssinaturaModel(assinatura))
+                .toList();
+
+        List<AssinaturaModel> filteredAssinaturas = assinaturasModel.stream()
+                .filter(assinatura -> assinatura.getAplicativo().getId() == id)
+                .collect(Collectors.toList());
+
+        return filteredAssinaturas;
+    }
+
     public AssinaturaDto create(AssinaturaDto payload) {
         AplicativoEntity aplicativo = aplicativoRepository.getReferenceById(payload.getIdAplicativo());
         ClienteEntity cliente = clienteRepository.getReferenceById(payload.getIdCliente());
@@ -102,6 +116,7 @@ public class AssinaturaService {
         assinaturaEntity.setAplicativo(aplicativo);
         assinaturaEntity.setCliente(cliente);
         assinaturaEntity.setInicioVigencia(LocalDate.now());
+        // Sempre que uma assinatura for cadastrada, o cliente ganha 7 dias grátis
         assinaturaEntity.setDataFim(assinaturaEntity.getInicioVigencia().plusDays(7));
 
         AssinaturaEntity createdAssinatura = this.assinaturaRepository.saveAndFlush(assinaturaEntity);

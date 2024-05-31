@@ -49,4 +49,9 @@ public class AssinaturaController {
         return this.assinaturaService.getByClient(codcli);
     }
 
+    @GetMapping("/assapp/{codapp}")
+    public List<AssinaturaModel> getAssinaturasAplicativo(@PathVariable int codapp) {
+        return this.assinaturaService.getByApp(codapp);
+    }
+
 }
