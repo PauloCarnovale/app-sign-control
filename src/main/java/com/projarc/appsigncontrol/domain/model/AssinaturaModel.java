@@ -1,5 +1,8 @@
 package com.projarc.appsigncontrol.domain.model;
 
+import java.time.LocalDate;
+
+import com.projarc.appsigncontrol.enums.AssinaturaStatus;
 import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
 import com.projarc.appsigncontrol.persistence.entity.ClienteEntity;
 
@@ -7,16 +10,24 @@ public class AssinaturaModel {
     private long id;
     private AplicativoEntity aplicativo;
     private ClienteEntity cliente;
-    private String dataInicio;
-    private String dataFim;
+    private LocalDate inicioVigencia;
+    private LocalDate fimVigencia;
 
-    public AssinaturaModel(long id, AplicativoEntity aplicativo, ClienteEntity cliente, String dataInicio,
-            String dataFim) {
+    private AssinaturaStatus status;
+
+    public AssinaturaModel(long id, AplicativoEntity aplicativo, ClienteEntity cliente, LocalDate inicioVigencia,
+            LocalDate fimVigencia) {
         this.id = id;
         this.aplicativo = aplicativo;
         this.cliente = cliente;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
+        this.inicioVigencia = inicioVigencia;
+        this.fimVigencia = fimVigencia;
+
+        if (fimVigencia.isAfter(LocalDate.now())) {
+            this.status = AssinaturaStatus.ATIVA;
+        } else {
+            this.status = AssinaturaStatus.INATIVA;
+        }
     }
 
     public long getId() {
@@ -43,20 +54,24 @@ public class AssinaturaModel {
         this.cliente = cliente;
     }
 
-    public String getDataInicio() {
-        return this.dataInicio;
+    public LocalDate getDataInicio() {
+        return this.inicioVigencia;
     }
 
-    public void setDataInicio(String dataInicio) {
-        this.dataInicio = dataInicio;
+    public void setDataInicio(LocalDate dataInicio) {
+        this.inicioVigencia = dataInicio;
     }
 
-    public String getDataFim() {
-        return this.dataFim;
+    public LocalDate getDataFim() {
+        return this.fimVigencia;
     }
 
-    public void setDataFim(String dataFim) {
-        this.dataFim = dataFim;
+    public void setDataFim(LocalDate dataFim) {
+        this.fimVigencia = dataFim;
+    }
+
+    public AssinaturaStatus getStatus() {
+        return this.status;
     }
 
     public static AssinaturaModel fromModel(AssinaturaModel assinaturaModel) {

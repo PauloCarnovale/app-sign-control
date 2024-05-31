@@ -1,6 +1,7 @@
 package com.projarc.appsigncontrol.domain.service;
 
 import java.security.InvalidParameterException;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
+import com.projarc.appsigncontrol.domain.model.AssinaturaModel;
 import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
 import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
 import com.projarc.appsigncontrol.persistence.entity.ClienteEntity;
@@ -49,14 +51,27 @@ public class AssinaturaService {
         }
     }
 
+    public AssinaturaDto getByType(String type) {
+        List<AssinaturaEntity> assinaturas = this.assinaturaRepository.findAll();
+        List<AssinaturaModel> assinaturasModel = assinaturas.stream()
+                .map(assinatura -> AssinaturaEntity.toAssinaturaModel(assinatura))
+                .toList();
+
+        return null;
+
+    }
+
     public AssinaturaEntity create(AssinaturaDto payload) {
         AplicativoEntity aplicativo = aplicativoRepository.getReferenceById(payload.getIdAplicativo());
         ClienteEntity cliente = clienteRepository.getReferenceById(payload.getIdCliente());
         if (aplicativo == null || cliente == null)
             throw new InvalidParameterException();
 
-        AssinaturaEntity assinaturaEntity = new AssinaturaEntity(payload.getId(), aplicativo,
-                cliente, payload.getInicioVigencia(), payload.getFimVigencia());
+        AssinaturaEntity assinaturaEntity = new AssinaturaEntity();
+        assinaturaEntity.setAplicativo(aplicativo);
+        assinaturaEntity.setCliente(cliente);
+        assinaturaEntity.setInicioVigencia(LocalDate.now());
+        assinaturaEntity.setDataFim(assinaturaEntity.getInicioVigencia().plusDays(7));
         return this.assinaturaRepository.saveAndFlush(assinaturaEntity);
     }
 }

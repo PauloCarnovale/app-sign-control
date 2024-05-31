@@ -1,5 +1,7 @@
 package com.projarc.appsigncontrol.persistence.entity;
 
+import java.time.LocalDate;
+
 import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
 import com.projarc.appsigncontrol.domain.model.AssinaturaModel;
 
@@ -28,17 +30,17 @@ public class AssinaturaEntity {
     private ClienteEntity cliente;
 
     @Column(name = "inicio_vigencia", nullable = false)
-    private String inicioVigencia;
+    private LocalDate inicioVigencia;
 
     @Column(name = "fimVigencia", nullable = false)
-    private String fimVigencia;
+    private LocalDate fimVigencia;
 
     public AssinaturaEntity() {
 
     }
 
-    public AssinaturaEntity(long id, AplicativoEntity aplicativo, ClienteEntity cliente, String inicioVigencia,
-            String fimVigencia) {
+    public AssinaturaEntity(long id, AplicativoEntity aplicativo, ClienteEntity cliente, LocalDate inicioVigencia,
+            LocalDate fimVigencia) {
         this.id = id;
         this.aplicativo = aplicativo;
         this.cliente = cliente;
@@ -70,19 +72,19 @@ public class AssinaturaEntity {
         this.cliente = cliente;
     }
 
-    public String getInicioVigencia() {
+    public LocalDate getInicioVigencia() {
         return this.inicioVigencia;
     }
 
-    public void setInicioVigencia(String inicioVigencia) {
+    public void setInicioVigencia(LocalDate inicioVigencia) {
         this.inicioVigencia = inicioVigencia;
     }
 
-    public String getFimVigencia() {
+    public LocalDate getFimVigencia() {
         return this.fimVigencia;
     }
 
-    public void setDataFim(String fimVigencia) {
+    public void setDataFim(LocalDate fimVigencia) {
         this.fimVigencia = fimVigencia;
     }
 

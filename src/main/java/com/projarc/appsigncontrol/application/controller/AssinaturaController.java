@@ -1,6 +1,7 @@
 package com.projarc.appsigncontrol.application.controller;
 
 import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
+import com.projarc.appsigncontrol.domain.model.AplicativoModel;
 import com.projarc.appsigncontrol.domain.model.AssinaturaModel;
 import com.projarc.appsigncontrol.domain.service.AssinaturaService;
 import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
@@ -37,6 +38,12 @@ public class AssinaturaController {
     @CrossOrigin(origins = "*")
     public AssinaturaDto getById(@PathVariable Long id) {
         return this.assinaturaService.getById(id);
+    }
+
+    @GetMapping("/{type}")
+    @CrossOrigin(origins = "*")
+    public AplicativoModel getByType(@PathVariable String type) {
+        return this.assinaturaService.getByType(type);
     }
 
     @PostMapping

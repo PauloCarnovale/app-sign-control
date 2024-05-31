@@ -1,5 +1,7 @@
 package com.projarc.appsigncontrol.application.dto;
 
+import java.time.LocalDate;
+
 public class AssinaturaDto {
     private long id;
     private long idAplicativo;
@@ -7,12 +9,12 @@ public class AssinaturaDto {
     private String inicioVigencia;
     private String fimVigencia;
 
-    public AssinaturaDto(long id, long idAplicativo, long idCliente, String inicioVigencia, String fimVigencia) {
+    public AssinaturaDto(long id, long idAplicativo, long idCliente, LocalDate inicioVigencia, LocalDate fimVigencia) {
         this.id = id;
         this.idAplicativo = idAplicativo;
         this.idCliente = idCliente;
-        this.inicioVigencia = inicioVigencia;
-        this.fimVigencia = fimVigencia;
+        this.inicioVigencia = inicioVigencia.toString();
+        this.fimVigencia = fimVigencia.toString();
     }
 
     public long getId() {
