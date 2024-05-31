@@ -1,12 +1,10 @@
 package com.projarc.appsigncontrol.enums;
 
-import javax.naming.NameNotFoundException;
-
 public enum AssinaturaStatus {
     ATIVA,
     INATIVA;
 
-    public static AssinaturaStatus getType(String type) throws NameNotFoundException {
+    public static AssinaturaStatus getType(String type) {
         if (type.equals("ATIVA")) {
             return ATIVA;
         }
@@ -15,6 +13,6 @@ public enum AssinaturaStatus {
             return INATIVA;
         }
 
-        throw new NameNotFoundException("Invalid type");
+        return null;
     }
 }

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/assinaturas")
+@RequestMapping("/servcad/assinaturas")
 public class AssinaturaController {
 
     @Autowired
@@ -34,15 +34,15 @@ public class AssinaturaController {
         return this.assinaturaService.getAll();
     }
 
-    @GetMapping("/{id}")
-    @CrossOrigin(origins = "*")
-    public AssinaturaDto getById(@PathVariable Long id) {
-        return this.assinaturaService.getById(id);
-    }
+    // @GetMapping("/{id}")
+    // @CrossOrigin(origins = "*")
+    // public AssinaturaDto getById(@PathVariable Long id) {
+    // return this.assinaturaService.getById(id);
+    // }
 
     @GetMapping("/{type}")
     @CrossOrigin(origins = "*")
-    public AplicativoModel getByType(@PathVariable String type) {
+    public List<AssinaturaModel> getByType(@PathVariable String type) {
         return this.assinaturaService.getByType(type);
     }
 

@@ -10,12 +10,15 @@ import org.springframework.stereotype.Service;
 
 import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
 import com.projarc.appsigncontrol.domain.model.AssinaturaModel;
+import com.projarc.appsigncontrol.enums.AssinaturaStatus;
 import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
 import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
 import com.projarc.appsigncontrol.persistence.entity.ClienteEntity;
 import com.projarc.appsigncontrol.persistence.repository.AplicativoRepository;
 import com.projarc.appsigncontrol.persistence.repository.AssinaturaRepository;
 import com.projarc.appsigncontrol.persistence.repository.ClienteRepository;
+
+import java.util.stream.Collectors;
 
 @Service
 public class AssinaturaService {
@@ -51,13 +54,27 @@ public class AssinaturaService {
         }
     }
 
-    public AssinaturaDto getByType(String type) {
+    public List<AssinaturaModel> getByType(String type) {
         List<AssinaturaEntity> assinaturas = this.assinaturaRepository.findAll();
         List<AssinaturaModel> assinaturasModel = assinaturas.stream()
                 .map(assinatura -> AssinaturaEntity.toAssinaturaModel(assinatura))
                 .toList();
 
-        return null;
+        if (AssinaturaStatus.getType(type) == AssinaturaStatus.ATIVA) {
+            assinaturasModel = assinaturasModel.stream()
+                    .filter(assinatura -> assinatura.getStatus() == AssinaturaStatus.ATIVA)
+                    .collect(Collectors.toList());
+            return assinaturasModel;
+        }
+
+        if (AssinaturaStatus.getType(type) == AssinaturaStatus.INATIVA) {
+            assinaturasModel = assinaturasModel.stream()
+                    .filter(assinatura -> assinatura.getStatus() == AssinaturaStatus.INATIVA)
+                    .collect(Collectors.toList());
+            return assinaturasModel;
+        }
+
+        return assinaturasModel;
 
     }
 

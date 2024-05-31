@@ -6,15 +6,15 @@ public class AssinaturaDto {
     private long id;
     private long idAplicativo;
     private long idCliente;
-    private String inicioVigencia;
-    private String fimVigencia;
+    private LocalDate inicioVigencia;
+    private LocalDate fimVigencia;
 
     public AssinaturaDto(long id, long idAplicativo, long idCliente, LocalDate inicioVigencia, LocalDate fimVigencia) {
         this.id = id;
         this.idAplicativo = idAplicativo;
         this.idCliente = idCliente;
-        this.inicioVigencia = inicioVigencia.toString();
-        this.fimVigencia = fimVigencia.toString();
+        this.inicioVigencia = inicioVigencia;
+        this.fimVigencia = fimVigencia;
     }
 
     public long getId() {
@@ -33,11 +33,11 @@ public class AssinaturaDto {
         return this.idCliente;
     }
 
-    public String getInicioVigencia() {
+    public LocalDate getInicioVigencia() {
         return this.inicioVigencia;
     }
 
-    public String getFimVigencia() {
+    public LocalDate getFimVigencia() {
         return this.fimVigencia;
     }
 
