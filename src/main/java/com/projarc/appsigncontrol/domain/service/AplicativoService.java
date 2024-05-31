@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.projarc.appsigncontrol.application.dto.AplicativoDto;
@@ -44,5 +45,15 @@ public class AplicativoService {
         AplicativoEntity aplicativoEntity = new AplicativoEntity(payload.getId(), payload.getNome(),
                 payload.getCustoMensal());
         return this.aplicativoRepository.saveAndFlush(aplicativoEntity);
+    }
+
+    public ResponseEntity<?> update(long id, AplicativoDto payload) {
+        AplicativoEntity aplicativoEntity = this.aplicativoRepository.getReferenceById(id);
+        if (aplicativoEntity == null) {
+            return ResponseEntity.notFound().build();
+        }
+        aplicativoEntity.setCustoMensal(payload.getCustoMensal());
+        this.aplicativoRepository.save(aplicativoEntity);
+        return ResponseEntity.ok().build();
     }
 }

@@ -6,6 +6,7 @@ import com.projarc.appsigncontrol.domain.service.AplicativoService;
 import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/aplicativos")
+@RequestMapping("/servcad/aplicativos")
 public class AplicativoController {
 
     @Autowired
@@ -43,5 +44,10 @@ public class AplicativoController {
     @CrossOrigin(origins = "*")
     public AplicativoEntity create(@RequestBody AplicativoDto payload) {
         return this.aplicativoService.create(payload);
+    }
+
+    @PostMapping("/atualizacusto/{id}")
+    public ResponseEntity<?> updateCost(@PathVariable Long id, @RequestBody AplicativoDto payload) {
+        return this.aplicativoService.update(id, payload);
     }
 }
