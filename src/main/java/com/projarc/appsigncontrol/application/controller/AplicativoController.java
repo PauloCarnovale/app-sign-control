@@ -6,7 +6,6 @@ import com.projarc.appsigncontrol.domain.service.AplicativoService;
 import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,7 +46,8 @@ public class AplicativoController {
     }
 
     @PostMapping("/atualizacusto/{id}")
-    public ResponseEntity<?> updateCost(@PathVariable Long id, @RequestBody AplicativoDto payload) {
+    @CrossOrigin(origins = "*")
+    public AplicativoEntity updateCost(@PathVariable Long id, @RequestBody AplicativoDto payload) {
         return this.aplicativoService.update(id, payload);
     }
 }

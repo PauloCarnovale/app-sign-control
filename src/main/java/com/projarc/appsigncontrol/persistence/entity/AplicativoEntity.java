@@ -22,8 +22,7 @@ public class AplicativoEntity {
     @Column(name = "custo_mensal", nullable = false)
     private double custoMensal;
 
-    public AplicativoEntity(long id, String nome, double custoMensal) {
-        this.id = id;
+    public AplicativoEntity(String nome, double custoMensal) {
         this.nome = nome;
         this.custoMensal = custoMensal;
     }
@@ -56,12 +55,16 @@ public class AplicativoEntity {
     }
 
     public static AplicativoEntity fromAplicativoModel(AplicativoModel aplicativoModel) {
-        return new AplicativoEntity(aplicativoModel.getId(), aplicativoModel.getNome(),
+        return new AplicativoEntity(aplicativoModel.getNome(),
                 aplicativoModel.getCustoMensal());
     }
 
     public static AplicativoModel toAplicativoModel(AplicativoEntity aplicativoEntity) {
         return new AplicativoModel(aplicativoEntity.getId(), aplicativoEntity.getNome(),
                 aplicativoEntity.getCustoMensal());
+    }
+
+    public String toString() {
+        return "id: " + this.id + "\n nome: " + this.nome + "\n custoMensal: " + this.custoMensal;
     }
 }

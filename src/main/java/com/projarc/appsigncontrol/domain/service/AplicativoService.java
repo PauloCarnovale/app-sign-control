@@ -4,13 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.projarc.appsigncontrol.application.dto.AplicativoDto;
 import com.projarc.appsigncontrol.domain.model.AplicativoModel;
 import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
 import com.projarc.appsigncontrol.persistence.repository.AplicativoRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class AplicativoService {
@@ -35,25 +36,24 @@ public class AplicativoService {
     public AplicativoModel getById(long id) {
         AplicativoEntity aplicativo = aplicativoRepository.getReferenceById(id);
         if (aplicativo == null) {
-            return null;
+            throw new EntityNotFoundException("Entity not found");
         } else {
             return AplicativoEntity.toAplicativoModel(aplicativo);
         }
     }
 
     public AplicativoEntity create(AplicativoDto payload) {
-        AplicativoEntity aplicativoEntity = new AplicativoEntity(payload.getId(), payload.getNome(),
+        AplicativoEntity aplicativoEntity = new AplicativoEntity(payload.getNome(),
                 payload.getCustoMensal());
         return this.aplicativoRepository.saveAndFlush(aplicativoEntity);
     }
 
-    public ResponseEntity<?> update(long id, AplicativoDto payload) {
+    public AplicativoEntity update(long id, AplicativoDto payload) {
         AplicativoEntity aplicativoEntity = this.aplicativoRepository.getReferenceById(id);
         if (aplicativoEntity == null) {
-            return ResponseEntity.notFound().build();
+            throw new EntityNotFoundException("Entity not found");
         }
         aplicativoEntity.setCustoMensal(payload.getCustoMensal());
-        this.aplicativoRepository.save(aplicativoEntity);
-        return ResponseEntity.ok().build();
+        return this.aplicativoRepository.saveAndFlush(aplicativoEntity);
     }
 }
