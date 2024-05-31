@@ -2,15 +2,15 @@ package com.projarc.appsigncontrol.enums;
 
 public enum AssinaturaStatus {
     ATIVA,
-    INATIVA;
+    CANCELADA;
 
     public static AssinaturaStatus getType(String type) {
         if (type.equals("ATIVA")) {
             return ATIVA;
         }
 
-        if (type.equals("INATIVA")) {
-            return INATIVA;
+        if (type.equals("CANCELADA")) {
+            return CANCELADA;
         }
 
         return null;

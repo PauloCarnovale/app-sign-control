@@ -26,7 +26,7 @@ public class AssinaturaModel {
         if (fimVigencia.isAfter(LocalDate.now())) {
             this.status = AssinaturaStatus.ATIVA;
         } else {
-            this.status = AssinaturaStatus.INATIVA;
+            this.status = AssinaturaStatus.CANCELADA;
         }
     }
 

@@ -67,9 +67,9 @@ public class AssinaturaService {
             return assinaturasModel;
         }
 
-        if (AssinaturaStatus.getType(type) == AssinaturaStatus.INATIVA) {
+        if (AssinaturaStatus.getType(type) == AssinaturaStatus.CANCELADA) {
             assinaturasModel = assinaturasModel.stream()
-                    .filter(assinatura -> assinatura.getStatus() == AssinaturaStatus.INATIVA)
+                    .filter(assinatura -> assinatura.getStatus() == AssinaturaStatus.CANCELADA)
                     .collect(Collectors.toList());
             return assinaturasModel;
         }
