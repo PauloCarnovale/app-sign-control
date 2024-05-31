@@ -9,3 +9,4 @@ INSERT INTO clientes (id, nome, email) VALUES (3, 'Cliente 3', 'cliente3@email.c
 INSERT INTO clientes (id, nome, email) VALUES (4, 'Cliente 4', 'cliente4@email.com');
 
 INSERT INTO assinaturas (id, id_aplicativo, id_cliente, inicio_vigencia, fim_vigencia) VALUES (1, 1, 1, '2024-01-01', '2024-12-01');
+INSERT INTO assinaturas (id, id_aplicativo, id_cliente, inicio_vigencia, fim_vigencia) VALUES (2, 1, 1, '2024-01-01', '2024-02-01');
