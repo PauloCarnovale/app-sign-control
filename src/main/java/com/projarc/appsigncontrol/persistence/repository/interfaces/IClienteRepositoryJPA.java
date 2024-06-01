@@ -1,7 +1,5 @@
 package com.projarc.appsigncontrol.persistence.repository.interfaces;
 
-import org.springframework.stereotype.Repository;
-
 import com.projarc.appsigncontrol.domain.entity.ClienteEntity;
 
 import java.util.List;
