@@ -3,6 +3,8 @@ package com.projarc.appsigncontrol.persistence.entity;
 import com.projarc.appsigncontrol.application.dto.PagamentoDto;
 import com.projarc.appsigncontrol.domain.model.PagamentoModel;
 
+import com.projarc.appsigncontrol.enums.*;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,12 +14,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "pagamentos")
 public class PagamentoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne()
     @JoinColumn(name = "id_assinatura")
@@ -27,12 +31,16 @@ public class PagamentoEntity {
     private double valorPago;
 
     @Column(name = "data_pagamento", nullable = false)
-    private String dataPagamento;
+    private LocalDate dataPagamento;
 
     @Column(name = "promocao", nullable = false, length = 255)
     private String promocao;
 
-    public PagamentoEntity(long id, AssinaturaEntity assinatura, double valorPago, String dataPagamento,
+    public PagamentoEntity() {
+
+    }
+
+    public PagamentoEntity(Long id, AssinaturaEntity assinatura, double valorPago, LocalDate dataPagamento,
             String promocao) {
         this.id = id;
         this.assinatura = assinatura;
@@ -41,11 +49,19 @@ public class PagamentoEntity {
         this.promocao = promocao;
     }
 
-    public long getId() {
+    public PagamentoEntity(AssinaturaEntity assinatura, double valorPago, LocalDate dataPagamento,
+            String promocao) {
+        this.assinatura = assinatura;
+        this.valorPago = valorPago;
+        this.dataPagamento = dataPagamento;
+        this.promocao = promocao;
+    }
+
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -65,11 +81,11 @@ public class PagamentoEntity {
         this.valorPago = valorPago;
     }
 
-    public String getDataPagamento() {
+    public LocalDate getDataPagamento() {
         return this.dataPagamento;
     }
 
-    public void setDataPagamento(String dataPagamento) {
+    public void setDataPagamento(LocalDate dataPagamento) {
         this.dataPagamento = dataPagamento;
     }
 
@@ -81,18 +97,15 @@ public class PagamentoEntity {
         this.promocao = promocao;
     }
 
-    public static PagamentoEntity fromPagamentoModel(PagamentoModel pagamentoModel) {
-        return new PagamentoEntity(pagamentoModel.getId(), pagamentoModel.getAssinatura(),
-                pagamentoModel.getValorPago(), pagamentoModel.getDataPagamento(), pagamentoModel.getPromocao());
-    }
-
-    public static PagamentoModel toPagamentoModel(PagamentoEntity pagamentoEntity) {
-        return new PagamentoModel(pagamentoEntity.getId(), pagamentoEntity.getAssinatura(),
-                pagamentoEntity.getValorPago(), pagamentoEntity.getDataPagamento(), pagamentoEntity.getPromocao());
+    public static PagamentoModel toPagamentoModel(PagamentoEntity pagamentoEntity, PagamentoStatus status,
+            double valorEstornado) {
+        return new PagamentoModel(pagamentoEntity.getId(), pagamentoEntity.getAssinatura().getId(),
+                pagamentoEntity.getValorPago(), pagamentoEntity.getDataPagamento(), pagamentoEntity.getPromocao(),
+                status, valorEstornado);
     }
 
     public static PagamentoDto toPagamentoDto(PagamentoEntity pagamentoEntity) {
-        return new PagamentoDto(pagamentoEntity.getId(), pagamentoEntity.getAssinatura(),
-                pagamentoEntity.getValorPago(), pagamentoEntity.getDataPagamento(), pagamentoEntity.getPromocao());
+        return new PagamentoDto(pagamentoEntity.getAssinatura().getId(),
+                pagamentoEntity.getValorPago(), pagamentoEntity.getPromocao());
     }
 }

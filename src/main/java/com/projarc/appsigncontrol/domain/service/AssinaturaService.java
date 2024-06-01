@@ -45,13 +45,8 @@ public class AssinaturaService {
         }
     }
 
-    public AssinaturaDto getById(long id) {
-        AssinaturaEntity assinatura = assinaturaRepository.getReferenceById(id);
-        if (assinatura == null) {
-            return null;
-        } else {
-            return AssinaturaEntity.toAssinaturaDto(assinatura);
-        }
+    public AssinaturaEntity getById(long id) {
+        return assinaturaRepository.getReferenceById(id);
     }
 
     public List<AssinaturaModel> getByType(String type) {
@@ -104,6 +99,10 @@ public class AssinaturaService {
                 .collect(Collectors.toList());
 
         return filteredAssinaturas;
+    }
+
+    public AssinaturaEntity renew(AssinaturaEntity assinatura) {
+        return this.assinaturaRepository.saveAndFlush(assinatura);
     }
 
     public AssinaturaDto create(AssinaturaDto payload) {

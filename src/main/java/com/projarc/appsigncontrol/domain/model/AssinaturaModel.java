@@ -42,32 +42,12 @@ public class AssinaturaModel {
         return this.cliente;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setAplicativo(AplicativoEntity aplicativo) {
-        this.aplicativo = aplicativo;
-    }
-
-    public void setCliente(ClienteEntity cliente) {
-        this.cliente = cliente;
-    }
-
     public LocalDate getDataInicio() {
         return this.inicioVigencia;
     }
 
-    public void setDataInicio(LocalDate dataInicio) {
-        this.inicioVigencia = dataInicio;
-    }
-
     public LocalDate getDataFim() {
         return this.fimVigencia;
-    }
-
-    public void setDataFim(LocalDate dataFim) {
-        this.fimVigencia = dataFim;
     }
 
     public AssinaturaStatus getStatus() {

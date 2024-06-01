@@ -1,24 +1,21 @@
 package com.projarc.appsigncontrol.application.dto;
 
-import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
+import java.time.LocalDate;
 
 public class PagamentoDto {
     private long id;
 
-    private AssinaturaEntity assinatura;
+    private long assinaturaId;
 
     private double valorPago;
 
-    private String dataPagamento;
+    private LocalDate dataPagamento;
 
     private String promocao;
 
-    public PagamentoDto(long id, AssinaturaEntity assinatura, double valorPago, String dataPagamento,
-            String promocao) {
-        this.id = id;
-        this.assinatura = assinatura;
+    public PagamentoDto(long assinaturaId, double valorPago, String promocao) {
+        this.assinaturaId = assinaturaId;
         this.valorPago = valorPago;
-        this.dataPagamento = dataPagamento;
         this.promocao = promocao;
     }
 
@@ -26,15 +23,15 @@ public class PagamentoDto {
         return this.id;
     }
 
-    public AssinaturaEntity getAssinatura() {
-        return this.assinatura;
+    public long getAssinaturaId() {
+        return this.assinaturaId;
     }
 
     public double getValorPago() {
         return this.valorPago;
     }
 
-    public String getDataPagamento() {
+    public LocalDate getDataPagamento() {
         return this.dataPagamento;
     }
 

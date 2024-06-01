@@ -88,19 +88,34 @@ public class AssinaturaEntity {
         this.fimVigencia = fimVigencia;
     }
 
+    public static boolean isAssinaturaAtiva(LocalDate fimVigencia) {
+        return fimVigencia.isAfter(LocalDate.now());
+    }
+
     public static AssinaturaEntity fromAssinaturaModel(AssinaturaModel assinaturaModel) {
+        if (assinaturaModel == null)
+            return null;
         return new AssinaturaEntity(assinaturaModel.getId(), assinaturaModel.getAplicativo(),
                 assinaturaModel.getCliente(), assinaturaModel.getDataInicio(), assinaturaModel.getDataFim());
     }
 
     public static AssinaturaModel toAssinaturaModel(AssinaturaEntity assinaturaEntity) {
+        if (assinaturaEntity == null)
+            return null;
         return new AssinaturaModel(assinaturaEntity.getId(), assinaturaEntity.getAplicativo(),
                 assinaturaEntity.getCliente(), assinaturaEntity.getInicioVigencia(), assinaturaEntity.getFimVigencia());
     }
 
     public static AssinaturaDto toAssinaturaDto(AssinaturaEntity assinaturaEntity) {
+        if (assinaturaEntity == null)
+            return null;
         return new AssinaturaDto(assinaturaEntity.getId(), assinaturaEntity.getAplicativo().getId(),
                 assinaturaEntity.getCliente().getId(), assinaturaEntity.getInicioVigencia(),
                 assinaturaEntity.getFimVigencia());
+    }
+
+    public String toString() {
+        return "id: " + this.id + " aplicativoId: " + this.aplicativo.getId() + " clienteId: " + this.cliente.getId()
+                + " inicioVigencia: " + this.getInicioVigencia() + " fimVigencia: " + this.getFimVigencia();
     }
 }
