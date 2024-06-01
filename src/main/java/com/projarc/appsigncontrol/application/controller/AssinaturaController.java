@@ -54,4 +54,9 @@ public class AssinaturaController {
         return this.assinaturaService.getByApp(codapp);
     }
 
+    @GetMapping("/assinvalida/{codass}")
+    public boolean getAssinaturaStatus(@PathVariable int codass) {
+        return this.assinaturaService.isAssinaturaActive(codass);
+    }
+
 }

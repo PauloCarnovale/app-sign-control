@@ -22,16 +22,6 @@ public class PagamentoModel {
 
     private double valorEstornado;
 
-    // public PagamentoModel(long id, AssinaturaEntity assinatura, double valorPago,
-    // LocalDate dataPagamento,
-    // String promocao) {
-    // this.id = id;
-    // this.assinatura = assinatura;
-    // this.valorPago = valorPago;
-    // this.dataPagamento = dataPagamento;
-    // this.promocao = promocao;
-    // }
-
     public PagamentoModel(Long id, long assinaturaId, double valorPago,
             LocalDate dataPagamento,
             String promocao, PagamentoStatus status, double valorEstornado) {
@@ -43,16 +33,6 @@ public class PagamentoModel {
         this.status = status;
         this.valorEstornado = valorEstornado;
     }
-
-    // public PagamentoModel(long id, long assinaturaId, double valorPago, LocalDate
-    // dataPagamento,
-    // String promocao) {
-    // this.id = id;
-    // this.assinaturaId = assinaturaId;
-    // this.valorPago = valorPago;
-    // this.dataPagamento = dataPagamento;
-    // this.promocao = promocao;
-    // }
 
     public long getId() {
         return this.id;

@@ -4,14 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.projarc.appsigncontrol.application.dto.AplicativoDto;
 import com.projarc.appsigncontrol.domain.model.AplicativoModel;
 import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
 import com.projarc.appsigncontrol.persistence.repository.AplicativoRepository;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class AplicativoService {
@@ -34,11 +34,11 @@ public class AplicativoService {
     }
 
     public AplicativoModel getById(long id) {
-        AplicativoEntity aplicativo = aplicativoRepository.getReferenceById(id);
-        if (aplicativo == null) {
-            throw new EntityNotFoundException("Entity not found");
-        } else {
+        try {
+            AplicativoEntity aplicativo = aplicativoRepository.getReferenceById(id);
             return AplicativoEntity.toAplicativoModel(aplicativo);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found");
         }
     }
 
@@ -51,7 +51,7 @@ public class AplicativoService {
     public AplicativoEntity update(long id, AplicativoDto payload) {
         AplicativoEntity aplicativoEntity = this.aplicativoRepository.getReferenceById(id);
         if (aplicativoEntity == null) {
-            throw new EntityNotFoundException("Entity not found");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found");
         }
         aplicativoEntity.setCustoMensal(payload.getCustoMensal());
         return this.aplicativoRepository.saveAndFlush(aplicativoEntity);

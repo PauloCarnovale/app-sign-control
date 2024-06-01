@@ -6,7 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
 import com.projarc.appsigncontrol.domain.model.AssinaturaModel;
@@ -46,7 +48,11 @@ public class AssinaturaService {
     }
 
     public AssinaturaEntity getById(long id) {
-        return assinaturaRepository.getReferenceById(id);
+        try {
+            return assinaturaRepository.getReferenceById(id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found");
+        }
     }
 
     public List<AssinaturaModel> getByType(String type) {
@@ -108,8 +114,9 @@ public class AssinaturaService {
     public AssinaturaDto create(AssinaturaDto payload) {
         AplicativoEntity aplicativo = aplicativoRepository.getReferenceById(payload.getIdAplicativo());
         ClienteEntity cliente = clienteRepository.getReferenceById(payload.getIdCliente());
-        if (aplicativo == null || cliente == null)
-            throw new InvalidParameterException();
+        if (aplicativo == null || cliente == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found");
+        }
 
         AssinaturaEntity assinaturaEntity = new AssinaturaEntity();
         assinaturaEntity.setAplicativo(aplicativo);
@@ -120,5 +127,14 @@ public class AssinaturaService {
 
         AssinaturaEntity createdAssinatura = this.assinaturaRepository.saveAndFlush(assinaturaEntity);
         return AssinaturaEntity.toAssinaturaDto(createdAssinatura);
+    }
+
+    public boolean isAssinaturaActive(long id) {
+        try {
+            AssinaturaEntity assinatura = this.getById(id);
+            return AssinaturaEntity.toAssinaturaModel(assinatura).getStatus() == AssinaturaStatus.ATIVA;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found");
+        }
     }
 }
