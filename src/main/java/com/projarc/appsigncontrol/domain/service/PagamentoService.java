@@ -41,7 +41,6 @@ public class PagamentoService {
             assinatura.setInicioVigencia(LocalDate.now());
             assinatura.setDataFim(LocalDate.now().plusDays(30));
         }
-        System.out.println(assinatura.toString());
         Promocoes promo = Promocoes.valueOf(payload.getPromocao());
 
         double valorEstornado = payload.getValorPago()
