@@ -27,6 +27,9 @@ public class UsuarioService {
                 .filter(usuario -> usuario.getUsuario().equals(login))
                 .collect(Collectors.toList());
         // Campo login é unique, logo só poderá haver no maximo 1 registro
+        if (filteredUsuarios.size() == 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Credenciais incorretas");
+        }
         return filteredUsuarios.get(0);
     }
 

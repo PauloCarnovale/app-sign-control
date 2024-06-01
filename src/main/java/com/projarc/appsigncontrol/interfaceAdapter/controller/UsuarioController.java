@@ -36,7 +36,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping
-    public boolean delete(UsuarioDto payload) {
+    public boolean delete(@RequestBody UsuarioDto payload) {
         return this.usuarioService.deleteUsuario(payload);
     }
 
