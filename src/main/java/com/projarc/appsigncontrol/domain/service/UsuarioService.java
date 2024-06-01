@@ -55,7 +55,6 @@ public class UsuarioService {
 
         System.out.println(usuario.getId());
         if (payload.getSenha().equals(usuario.getSenha())) {
-            System.out.println(true);
             return this.usuarioRepository.delete(usuario);
         }
 
