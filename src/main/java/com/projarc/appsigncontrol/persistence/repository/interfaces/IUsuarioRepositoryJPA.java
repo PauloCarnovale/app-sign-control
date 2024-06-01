@@ -1,10 +1,10 @@
 package com.projarc.appsigncontrol.persistence.repository.interfaces;
 
-import com.projarc.appsigncontrol.domain.entity.UsuarioEntity;
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.projarc.appsigncontrol.persistence.entity.UsuarioEntity;
 
 public interface IUsuarioRepositoryJPA extends JpaRepository<UsuarioEntity, Long> {
     List<UsuarioEntity> findAll();

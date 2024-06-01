@@ -6,8 +6,8 @@ import java.util.LinkedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.projarc.appsigncontrol.domain.entity.UsuarioEntity;
 import com.projarc.appsigncontrol.domain.persistence.IUsuarioRepository;
+import com.projarc.appsigncontrol.persistence.entity.UsuarioEntity;
 import com.projarc.appsigncontrol.persistence.repository.interfaces.IUsuarioRepositoryJPA;
 
 @Repository

@@ -2,7 +2,7 @@ package com.projarc.appsigncontrol.domain.persistence;
 
 import java.util.List;
 
-import com.projarc.appsigncontrol.domain.entity.UsuarioEntity;
+import com.projarc.appsigncontrol.persistence.entity.UsuarioEntity;
 
 public interface IUsuarioRepository {
     List<UsuarioEntity> getAll();

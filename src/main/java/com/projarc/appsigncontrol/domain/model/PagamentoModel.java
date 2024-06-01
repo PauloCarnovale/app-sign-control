@@ -1,11 +1,11 @@
 package com.projarc.appsigncontrol.domain.model;
 
 import com.projarc.appsigncontrol.application.dto.PagamentoDto;
-import com.projarc.appsigncontrol.domain.entity.AssinaturaEntity;
 
 import java.time.LocalDate;
 
 import com.projarc.appsigncontrol.enums.PagamentoStatus;
+import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
 
 public class PagamentoModel {
     private long id;

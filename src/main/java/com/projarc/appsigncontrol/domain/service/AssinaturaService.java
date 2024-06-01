@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
-import com.projarc.appsigncontrol.domain.entity.AplicativoEntity;
-import com.projarc.appsigncontrol.domain.entity.AssinaturaEntity;
-import com.projarc.appsigncontrol.domain.entity.ClienteEntity;
 import com.projarc.appsigncontrol.domain.model.AssinaturaModel;
 import com.projarc.appsigncontrol.enums.AssinaturaStatus;
+import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
+import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
+import com.projarc.appsigncontrol.persistence.entity.ClienteEntity;
 import com.projarc.appsigncontrol.persistence.repository.AplicativoRepositoryJPA;
 import com.projarc.appsigncontrol.persistence.repository.AssinaturaRepositoryJPA;
 import com.projarc.appsigncontrol.persistence.repository.ClienteRepositoryJPA;

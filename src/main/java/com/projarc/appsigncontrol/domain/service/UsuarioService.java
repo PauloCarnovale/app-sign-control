@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.projarc.appsigncontrol.application.dto.UsuarioDto;
-import com.projarc.appsigncontrol.domain.entity.UsuarioEntity;
+import com.projarc.appsigncontrol.persistence.entity.UsuarioEntity;
 import com.projarc.appsigncontrol.persistence.repository.UsuarioRepositoryJPA;
 
 @Service

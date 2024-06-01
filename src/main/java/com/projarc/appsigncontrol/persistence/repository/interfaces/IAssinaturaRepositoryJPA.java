@@ -1,10 +1,10 @@
 package com.projarc.appsigncontrol.persistence.repository.interfaces;
 
-import com.projarc.appsigncontrol.domain.entity.AssinaturaEntity;
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
 
 public interface IAssinaturaRepositoryJPA extends JpaRepository<AssinaturaEntity, Long> {
     List<AssinaturaEntity> findAll();

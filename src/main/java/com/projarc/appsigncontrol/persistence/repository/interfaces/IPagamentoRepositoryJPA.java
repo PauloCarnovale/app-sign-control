@@ -1,10 +1,10 @@
 package com.projarc.appsigncontrol.persistence.repository.interfaces;
 
-import com.projarc.appsigncontrol.domain.entity.PagamentoEntity;
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.projarc.appsigncontrol.persistence.entity.PagamentoEntity;
 
 public interface IPagamentoRepositoryJPA extends JpaRepository<PagamentoEntity, Long> {
     List<PagamentoEntity> findAll();

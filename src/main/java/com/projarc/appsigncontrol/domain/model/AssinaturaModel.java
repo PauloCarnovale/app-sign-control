@@ -2,9 +2,9 @@ package com.projarc.appsigncontrol.domain.model;
 
 import java.time.LocalDate;
 
-import com.projarc.appsigncontrol.domain.entity.AplicativoEntity;
-import com.projarc.appsigncontrol.domain.entity.ClienteEntity;
 import com.projarc.appsigncontrol.enums.AssinaturaStatus;
+import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
+import com.projarc.appsigncontrol.persistence.entity.ClienteEntity;
 
 public class AssinaturaModel {
     private long id;

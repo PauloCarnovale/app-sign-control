@@ -1,8 +1,8 @@
 package com.projarc.appsigncontrol.interfaceAdapter.controller;
 
 import com.projarc.appsigncontrol.application.dto.UsuarioDto;
-import com.projarc.appsigncontrol.domain.entity.UsuarioEntity;
 import com.projarc.appsigncontrol.domain.service.UsuarioService;
+import com.projarc.appsigncontrol.persistence.entity.UsuarioEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

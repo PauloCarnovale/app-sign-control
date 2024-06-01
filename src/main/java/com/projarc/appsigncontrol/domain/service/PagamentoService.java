@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.projarc.appsigncontrol.application.dto.PagamentoDto;
-import com.projarc.appsigncontrol.domain.entity.AssinaturaEntity;
-import com.projarc.appsigncontrol.domain.entity.PagamentoEntity;
 import com.projarc.appsigncontrol.domain.model.PagamentoModel;
 import com.projarc.appsigncontrol.enums.Promocoes;
+import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
+import com.projarc.appsigncontrol.persistence.entity.PagamentoEntity;
 import com.projarc.appsigncontrol.persistence.repository.PagamentoRepositoryJPA;
 import com.projarc.appsigncontrol.enums.PagamentoStatus;
 

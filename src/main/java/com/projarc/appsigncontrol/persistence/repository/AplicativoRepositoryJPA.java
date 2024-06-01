@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.projarc.appsigncontrol.domain.entity.AplicativoEntity;
 import com.projarc.appsigncontrol.domain.persistence.IAplicativoRepository;
+import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
 import com.projarc.appsigncontrol.persistence.repository.interfaces.IAplicativoRepositoryJPA;
 
 @Repository

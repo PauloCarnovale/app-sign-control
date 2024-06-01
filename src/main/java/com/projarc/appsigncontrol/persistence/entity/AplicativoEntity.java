@@ -1,4 +1,4 @@
-package com.projarc.appsigncontrol.domain.entity;
+package com.projarc.appsigncontrol.persistence.entity;
 
 import com.projarc.appsigncontrol.domain.model.AplicativoModel;
 
