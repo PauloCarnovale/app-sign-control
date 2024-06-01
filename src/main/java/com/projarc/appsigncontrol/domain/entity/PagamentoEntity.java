@@ -1,4 +1,4 @@
-package com.projarc.appsigncontrol.persistence.entity;
+package com.projarc.appsigncontrol.domain.entity;
 
 import com.projarc.appsigncontrol.application.dto.PagamentoDto;
 import com.projarc.appsigncontrol.domain.model.PagamentoModel;

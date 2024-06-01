@@ -1,4 +1,4 @@
-package com.projarc.appsigncontrol.persistence.entity;
+package com.projarc.appsigncontrol.domain.entity;
 
 import java.time.LocalDate;
 

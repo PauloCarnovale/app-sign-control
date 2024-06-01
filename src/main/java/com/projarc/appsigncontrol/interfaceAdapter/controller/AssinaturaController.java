@@ -1,4 +1,4 @@
-package com.projarc.appsigncontrol.application.controller;
+package com.projarc.appsigncontrol.interfaceAdapter.controller;
 
 import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
 import com.projarc.appsigncontrol.domain.model.AssinaturaModel;

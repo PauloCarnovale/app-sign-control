@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.projarc.appsigncontrol.application.dto.PagamentoDto;
+import com.projarc.appsigncontrol.domain.entity.AssinaturaEntity;
+import com.projarc.appsigncontrol.domain.entity.PagamentoEntity;
 import com.projarc.appsigncontrol.domain.model.PagamentoModel;
 import com.projarc.appsigncontrol.enums.Promocoes;
-import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
-import com.projarc.appsigncontrol.persistence.entity.PagamentoEntity;
-import com.projarc.appsigncontrol.persistence.repository.PagamentoRepository;
-
+import com.projarc.appsigncontrol.persistence.repository.PagamentoRepositoryJPA;
 import com.projarc.appsigncontrol.enums.PagamentoStatus;
 
 import java.time.LocalDate;
@@ -21,10 +20,10 @@ import java.time.LocalDate;
 @Service
 public class PagamentoService {
     @Autowired
-    private PagamentoRepository pagamentoRepository;
+    private PagamentoRepositoryJPA pagamentoRepository;
     private AssinaturaService assinaturaService;
 
-    public PagamentoService(PagamentoRepository pagamentoRepository, AssinaturaService assinaturaService) {
+    public PagamentoService(PagamentoRepositoryJPA pagamentoRepository, AssinaturaService assinaturaService) {
         this.pagamentoRepository = pagamentoRepository;
         this.assinaturaService = assinaturaService;
     }
@@ -60,7 +59,7 @@ public class PagamentoService {
         pagamentoEntity.setValorPago(valorPago);
         pagamentoEntity.setPromocao(payload.getPromocao());
 
-        PagamentoEntity newPayment = this.pagamentoRepository.saveAndFlush(pagamentoEntity);
+        PagamentoEntity newPayment = this.pagamentoRepository.save(pagamentoEntity);
         this.assinaturaService.renew(assinatura);
 
         return PagamentoEntity.toPagamentoModel(newPayment, status, valorEstornado);

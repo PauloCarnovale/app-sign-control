@@ -1,6 +1,5 @@
 package com.projarc.appsigncontrol.domain.service;
 
-import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,33 +10,34 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
+import com.projarc.appsigncontrol.domain.entity.AplicativoEntity;
+import com.projarc.appsigncontrol.domain.entity.AssinaturaEntity;
+import com.projarc.appsigncontrol.domain.entity.ClienteEntity;
 import com.projarc.appsigncontrol.domain.model.AssinaturaModel;
 import com.projarc.appsigncontrol.enums.AssinaturaStatus;
-import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
-import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
-import com.projarc.appsigncontrol.persistence.entity.ClienteEntity;
-import com.projarc.appsigncontrol.persistence.repository.AplicativoRepository;
-import com.projarc.appsigncontrol.persistence.repository.AssinaturaRepository;
-import com.projarc.appsigncontrol.persistence.repository.ClienteRepository;
+import com.projarc.appsigncontrol.persistence.repository.AplicativoRepositoryJPA;
+import com.projarc.appsigncontrol.persistence.repository.AssinaturaRepositoryJPA;
+import com.projarc.appsigncontrol.persistence.repository.ClienteRepositoryJPA;
 
 import java.util.stream.Collectors;
 
 @Service
 public class AssinaturaService {
     @Autowired
-    private AssinaturaRepository assinaturaRepository;
-    private AplicativoRepository aplicativoRepository;
-    private ClienteRepository clienteRepository;
+    private AssinaturaRepositoryJPA assinaturaRepository;
+    private AplicativoRepositoryJPA aplicativoRepository;
+    private ClienteRepositoryJPA clienteRepository;
 
-    public AssinaturaService(AssinaturaRepository assinaturaRepository, AplicativoRepository aplicativoRepository,
-            ClienteRepository clienteRepository) {
+    public AssinaturaService(AssinaturaRepositoryJPA assinaturaRepository,
+            AplicativoRepositoryJPA aplicativoRepository,
+            ClienteRepositoryJPA clienteRepository) {
         this.assinaturaRepository = assinaturaRepository;
         this.aplicativoRepository = aplicativoRepository;
         this.clienteRepository = clienteRepository;
     }
 
     public List<AssinaturaModel> getAll() {
-        List<AssinaturaEntity> assinaturas = this.assinaturaRepository.findAll();
+        List<AssinaturaEntity> assinaturas = this.assinaturaRepository.getAll();
         if (assinaturas.size() == 0) {
             return new LinkedList<AssinaturaModel>();
         } else {
@@ -49,14 +49,14 @@ public class AssinaturaService {
 
     public AssinaturaEntity getById(long id) {
         try {
-            return assinaturaRepository.getReferenceById(id);
+            return assinaturaRepository.getOne(id);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found");
         }
     }
 
     public List<AssinaturaModel> getByType(String type) {
-        List<AssinaturaEntity> assinaturas = this.assinaturaRepository.findAll();
+        List<AssinaturaEntity> assinaturas = this.assinaturaRepository.getAll();
         List<AssinaturaModel> assinaturasModel = assinaturas.stream()
                 .map(assinatura -> AssinaturaEntity.toAssinaturaModel(assinatura))
                 .toList();
@@ -80,7 +80,7 @@ public class AssinaturaService {
     }
 
     public List<AssinaturaModel> getByClient(int id) {
-        List<AssinaturaEntity> assinaturas = this.assinaturaRepository.findAll();
+        List<AssinaturaEntity> assinaturas = this.assinaturaRepository.getAll();
 
         List<AssinaturaModel> assinaturasModel = assinaturas.stream()
                 .map(assinatura -> AssinaturaEntity.toAssinaturaModel(assinatura))
@@ -94,7 +94,7 @@ public class AssinaturaService {
     }
 
     public List<AssinaturaModel> getByApp(int id) {
-        List<AssinaturaEntity> assinaturas = this.assinaturaRepository.findAll();
+        List<AssinaturaEntity> assinaturas = this.assinaturaRepository.getAll();
 
         List<AssinaturaModel> assinaturasModel = assinaturas.stream()
                 .map(assinatura -> AssinaturaEntity.toAssinaturaModel(assinatura))
@@ -108,12 +108,12 @@ public class AssinaturaService {
     }
 
     public AssinaturaEntity renew(AssinaturaEntity assinatura) {
-        return this.assinaturaRepository.saveAndFlush(assinatura);
+        return this.assinaturaRepository.save(assinatura);
     }
 
     public AssinaturaDto create(AssinaturaDto payload) {
-        AplicativoEntity aplicativo = aplicativoRepository.getReferenceById(payload.getIdAplicativo());
-        ClienteEntity cliente = clienteRepository.getReferenceById(payload.getIdCliente());
+        AplicativoEntity aplicativo = aplicativoRepository.getOne(payload.getIdAplicativo());
+        ClienteEntity cliente = clienteRepository.getOne(payload.getIdCliente());
         if (aplicativo == null || cliente == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found");
         }
@@ -125,13 +125,13 @@ public class AssinaturaService {
         // Sempre que uma assinatura for cadastrada, o cliente ganha 7 dias grátis
         assinaturaEntity.setDataFim(assinaturaEntity.getInicioVigencia().plusDays(7));
 
-        AssinaturaEntity createdAssinatura = this.assinaturaRepository.saveAndFlush(assinaturaEntity);
+        AssinaturaEntity createdAssinatura = this.assinaturaRepository.save(assinaturaEntity);
         return AssinaturaEntity.toAssinaturaDto(createdAssinatura);
     }
 
     public boolean isAssinaturaActive(long id) {
         try {
-            AssinaturaEntity assinatura = this.getById(id);
+            AssinaturaEntity assinatura = this.assinaturaRepository.getOne(id);
             return AssinaturaEntity.toAssinaturaModel(assinatura).getStatus() == AssinaturaStatus.ATIVA;
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found");

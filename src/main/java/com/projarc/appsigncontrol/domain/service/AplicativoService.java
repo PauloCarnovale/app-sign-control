@@ -9,21 +9,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.projarc.appsigncontrol.application.dto.AplicativoDto;
+import com.projarc.appsigncontrol.domain.entity.AplicativoEntity;
 import com.projarc.appsigncontrol.domain.model.AplicativoModel;
-import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
-import com.projarc.appsigncontrol.persistence.repository.AplicativoRepository;
+import com.projarc.appsigncontrol.persistence.repository.AplicativoRepositoryJPA;
 
 @Service
 public class AplicativoService {
     @Autowired
-    private AplicativoRepository aplicativoRepository;
+    private AplicativoRepositoryJPA aplicativoRepository;
 
-    public AplicativoService(AplicativoRepository aplicativoRepository) {
+    public AplicativoService(AplicativoRepositoryJPA aplicativoRepository) {
         this.aplicativoRepository = aplicativoRepository;
     }
 
     public List<AplicativoModel> getAll() {
-        List<AplicativoEntity> aplicativos = aplicativoRepository.findAll();
+        List<AplicativoEntity> aplicativos = aplicativoRepository.getAll();
         if (aplicativos.size() == 0) {
             return new LinkedList<AplicativoModel>();
         } else {
@@ -35,7 +35,7 @@ public class AplicativoService {
 
     public AplicativoModel getById(long id) {
         try {
-            AplicativoEntity aplicativo = aplicativoRepository.getReferenceById(id);
+            AplicativoEntity aplicativo = aplicativoRepository.getOne(id);
             return AplicativoEntity.toAplicativoModel(aplicativo);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found");
@@ -45,15 +45,15 @@ public class AplicativoService {
     public AplicativoEntity create(AplicativoDto payload) {
         AplicativoEntity aplicativoEntity = new AplicativoEntity(payload.getNome(),
                 payload.getCustoMensal());
-        return this.aplicativoRepository.saveAndFlush(aplicativoEntity);
+        return this.aplicativoRepository.save(aplicativoEntity);
     }
 
     public AplicativoEntity update(long id, AplicativoDto payload) {
-        AplicativoEntity aplicativoEntity = this.aplicativoRepository.getReferenceById(id);
+        AplicativoEntity aplicativoEntity = this.aplicativoRepository.getOne(id);
         if (aplicativoEntity == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found");
         }
         aplicativoEntity.setCustoMensal(payload.getCustoMensal());
-        return this.aplicativoRepository.saveAndFlush(aplicativoEntity);
+        return this.aplicativoRepository.save(aplicativoEntity);
     }
 }

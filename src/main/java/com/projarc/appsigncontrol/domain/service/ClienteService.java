@@ -9,21 +9,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.projarc.appsigncontrol.application.dto.ClienteDto;
+import com.projarc.appsigncontrol.domain.entity.ClienteEntity;
 import com.projarc.appsigncontrol.domain.model.ClienteModel;
-import com.projarc.appsigncontrol.persistence.entity.ClienteEntity;
-import com.projarc.appsigncontrol.persistence.repository.ClienteRepository;
+import com.projarc.appsigncontrol.persistence.repository.ClienteRepositoryJPA;
 
 @Service
 public class ClienteService {
     @Autowired
-    private ClienteRepository clienteRepository;
+    private ClienteRepositoryJPA clienteRepository;
 
-    public ClienteService(ClienteRepository clienteRepository) {
+    public ClienteService(ClienteRepositoryJPA clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 
     public List<ClienteModel> getAll() {
-        List<ClienteEntity> clientes = this.clienteRepository.findAll();
+        List<ClienteEntity> clientes = this.clienteRepository.getAll();
         if (clientes.size() == 0) {
             return new LinkedList<ClienteModel>();
         } else {
@@ -34,7 +34,7 @@ public class ClienteService {
     }
 
     public ClienteModel getById(long id) {
-        ClienteEntity cliente = clienteRepository.getReferenceById(id);
+        ClienteEntity cliente = clienteRepository.getOne(id);
         if (cliente == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entity not found");
         }
@@ -43,6 +43,6 @@ public class ClienteService {
 
     public ClienteEntity create(ClienteDto payload) {
         ClienteEntity clienteModel = new ClienteEntity(payload.getId(), payload.getNome(), payload.getEmail());
-        return this.clienteRepository.saveAndFlush(clienteModel);
+        return this.clienteRepository.save(clienteModel);
     }
 }

@@ -1,15 +1,14 @@
-package com.projarc.appsigncontrol.persistence.repository;
+package com.projarc.appsigncontrol.persistence.repository.interfaces;
 
 import org.springframework.stereotype.Repository;
 
-import com.projarc.appsigncontrol.persistence.entity.ClienteEntity;
+import com.projarc.appsigncontrol.domain.entity.ClienteEntity;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface ClienteRepository extends JpaRepository<ClienteEntity, Long> {
+public interface IClienteRepositoryJPA extends JpaRepository<ClienteEntity, Long> {
     List<ClienteEntity> findAll();
 
     ClienteEntity getReferenceById(long id);

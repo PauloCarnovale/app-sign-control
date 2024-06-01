@@ -1,7 +1,7 @@
 package com.projarc.appsigncontrol.domain.model;
 
 import com.projarc.appsigncontrol.application.dto.PagamentoDto;
-import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
+import com.projarc.appsigncontrol.domain.entity.AssinaturaEntity;
 
 import java.time.LocalDate;
 
