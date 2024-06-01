@@ -53,7 +53,6 @@ public class UsuarioService {
     public boolean deleteUsuario(UsuarioDto payload) {
         UsuarioEntity usuario = this.getUsuarioByLogin(payload.getUsuario());
 
-        System.out.println(usuario.getId());
         if (payload.getSenha().equals(usuario.getSenha())) {
             return this.usuarioRepository.delete(usuario);
         }
