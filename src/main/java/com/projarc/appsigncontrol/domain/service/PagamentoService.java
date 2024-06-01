@@ -43,11 +43,14 @@ public class PagamentoService {
         }
         System.out.println(assinatura.toString());
         Promocoes promo = Promocoes.valueOf(payload.getPromocao());
-        double valorPago = payload.getValorPago() * (1 - promo.getDiscount());
 
-        double valorEstornado = Math.abs(valorPago - assinatura.getAplicativo().getCustoMensal());
+        double valorEstornado = payload.getValorPago()
+                - assinatura.getAplicativo().getCustoMensal() * (1 - promo.getDiscount());
         PagamentoStatus status = PagamentoStatus.PAGAMENTO_OK;
-        if (valorPago - assinatura.getAplicativo().getCustoMensal() * (1 - promo.getDiscount()) < 0) {
+
+        double valorPago = payload.getValorPago() - valorEstornado;
+
+        if (valorEstornado < 0) {
             status = PagamentoStatus.VALOR_INCORRETO;
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(
                     "Valor de pagamento menor que da assinatura (R$ %f)", assinatura.getAplicativo().getCustoMensal()));
