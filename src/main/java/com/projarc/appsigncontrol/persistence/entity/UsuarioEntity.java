@@ -1,5 +1,7 @@
 package com.projarc.appsigncontrol.persistence.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,10 +13,14 @@ import jakarta.persistence.Table;
 @Table(name = "usuarios")
 public class UsuarioEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq")
+    @GenericGenerator(name = "seq", strategy = "increment")
+    @Column(name = "id")
+    private long id;
+
     @Column(unique = true)
     private String usuario;
+
     private String senha;
 
     public UsuarioEntity() {

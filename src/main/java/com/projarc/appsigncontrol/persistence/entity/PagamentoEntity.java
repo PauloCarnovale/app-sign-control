@@ -16,12 +16,16 @@ import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "pagamentos")
 public class PagamentoEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq")
+    @GenericGenerator(name = "seq", strategy = "increment")
+    @Column(name = "id")
+    private long id;
 
     @ManyToOne()
     @JoinColumn(name = "id_assinatura")
@@ -40,7 +44,7 @@ public class PagamentoEntity {
 
     }
 
-    public PagamentoEntity(Long id, AssinaturaEntity assinatura, double valorPago, LocalDate dataPagamento,
+    public PagamentoEntity(long id, AssinaturaEntity assinatura, double valorPago, LocalDate dataPagamento,
             String promocao) {
         this.id = id;
         this.assinatura = assinatura;

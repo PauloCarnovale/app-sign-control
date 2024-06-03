@@ -31,12 +31,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/aplicativos",
+							"raw": "{{base_url}}/servcad/aplicativos",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"api",
+								"servcad",
 								"aplicativos"
 							]
 						},
@@ -64,12 +64,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/aplicativos/1",
+							"raw": "{{base_url}}/servcad/aplicativos/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"api",
+								"servcad",
 								"aplicativos",
 								"1"
 							]
@@ -100,7 +100,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"descricao\": \"test123\"\n}",
+							"raw": "{\n    \"custoMensal\": 555,\n    \"nome\": \"teste\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -108,13 +108,58 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/aplicativos",
+							"raw": "{{base_url}}/servcad/aplicativos",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"api",
+								"servcad",
 								"aplicativos"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"custoMensal\": 15\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/servcad/aplicativos/atualizacusto/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"servcad",
+								"aplicativos",
+								"atualizacusto",
+								"4"
 							]
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
@@ -146,12 +191,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/clientes",
+							"raw": "{{base_url}}/servcad/clientes",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"api",
+								"servcad",
 								"clientes"
 							]
 						},
@@ -179,12 +224,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/clientes/1",
+							"raw": "{{base_url}}/servcad/clientes/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"api",
+								"servcad",
 								"clientes",
 								"1"
 							]
@@ -223,12 +268,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/clientes",
+							"raw": "{{base_url}}/servcad/clientes",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"api",
+								"servcad",
 								"clientes"
 							]
 						},
@@ -261,12 +306,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/assinaturas",
+							"raw": "{{base_url}}/servcad/assinaturas",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"api",
+								"servcad",
 								"assinaturas"
 							]
 						},
@@ -275,7 +320,7 @@
 					"response": []
 				},
 				{
-					"name": "findOne",
+					"name": "Status ativa",
 					"event": [
 						{
 							"listen": "test",
@@ -294,14 +339,84 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/assinaturas/1",
+							"raw": "{{base_url}}/servcad/assinaturas/assinvalida/3",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"api",
+								"servcad",
 								"assinaturas",
-								"1"
+								"assinvalida",
+								"3"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "find by Type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/servcad/assinaturas/ATIVA",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"servcad",
+								"assinaturas",
+								"ATIVA"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "find by Client",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/servcad/assinaturas/asscli/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"servcad",
+								"assinaturas",
+								"asscli",
+								"2"
 							]
 						},
 						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -330,7 +445,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"idAplicativo\": 1,\n    \"idCliente\": 1,\n    \"dataInicio\": \"2024-01-01\",\n    \"dataFim\": \"2024-05-01\"\n}",
+							"raw": "{\n    \"idAplicativo\": 1,\n    \"idCliente\": 3\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -338,16 +453,135 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/assinaturas",
+							"raw": "{{base_url}}/servcad/assinaturas",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"api",
+								"servcad",
 								"assinaturas"
 							]
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pagamentos",
+			"item": [
+				{
+					"name": "Registrar Pagamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"assinaturaId\": 1,\r\n    \"valorPago\": 220,\r\n    \"promocao\": \"PROMO30DAYS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/servcad/registrarpagamento",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"servcad",
+								"registrarpagamento"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Validar Login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/servcad/usuarios?usuario=teste&senha=12345",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"servcad",
+								"usuarios"
+							],
+							"query": [
+								{
+									"key": "usuario",
+									"value": "teste"
+								},
+								{
+									"key": "senha",
+									"value": "12345"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"teste\",\r\n    \"senha\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/servcad/usuarios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"servcad",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"teste\",\r\n    \"senha\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/servcad/usuarios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"servcad",
+								"usuarios"
+							]
+						}
 					},
 					"response": []
 				}

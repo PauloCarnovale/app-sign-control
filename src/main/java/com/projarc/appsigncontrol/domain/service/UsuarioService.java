@@ -44,9 +44,12 @@ public class UsuarioService {
     }
 
     public UsuarioEntity saveUsuario(UsuarioDto payload) {
+        System.out.println(payload.getSenha());
+        System.out.println(payload.getUsuario());
         UsuarioEntity usuarioEntity = new UsuarioEntity();
-        usuarioEntity.setSenha(payload.getSenha());
         usuarioEntity.setUsuario(payload.getUsuario());
+        usuarioEntity.setSenha(payload.getSenha());
+        System.out.println(usuarioEntity.getId());
         return this.usuarioRepository.save(usuarioEntity);
     }
 

@@ -4,7 +4,7 @@ public class UsuarioDto {
     private String usuario;
     private String senha;
 
-    public UsuarioDto(String usuario, String senha) {
+    public UsuarioDto(long id, String usuario, String senha) {
         this.usuario = usuario;
         this.senha = senha;
     }

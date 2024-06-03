@@ -28,4 +28,4 @@ INSERT INTO assinaturas (id, id_aplicativo, id_cliente, inicio_vigencia, fim_vig
 
 -- Usuarios
 INSERT INTO usuarios(id, usuario, senha) VALUES (1, 'teste', '12345');
-INSERT INTO usuarios(id, usuario, senha) VALUES (2, 'teste2', '12345');
+INSERT INTO usuarios(id, usuario, senha) VALUES (2, 'teste11', '12345');

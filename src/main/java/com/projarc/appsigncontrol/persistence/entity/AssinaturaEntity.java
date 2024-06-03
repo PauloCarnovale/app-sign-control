@@ -2,6 +2,8 @@ package com.projarc.appsigncontrol.persistence.entity;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
 import com.projarc.appsigncontrol.domain.model.AssinaturaModel;
 
@@ -18,7 +20,9 @@ import jakarta.persistence.Table;
 @Table(name = "assinaturas")
 public class AssinaturaEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq")
+    @GenericGenerator(name = "seq", strategy = "increment")
+    @Column(name = "id")
     private long id;
 
     @ManyToOne()
