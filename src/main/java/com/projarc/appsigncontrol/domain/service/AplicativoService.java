@@ -10,15 +10,15 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.projarc.appsigncontrol.application.dto.AplicativoDto;
 import com.projarc.appsigncontrol.domain.model.AplicativoModel;
+import com.projarc.appsigncontrol.domain.persistence.IAplicativoRepository;
 import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
-import com.projarc.appsigncontrol.persistence.repository.AplicativoRepositoryJPA;
 
 @Service
 public class AplicativoService {
     @Autowired
-    private AplicativoRepositoryJPA aplicativoRepository;
+    private IAplicativoRepository aplicativoRepository;
 
-    public AplicativoService(AplicativoRepositoryJPA aplicativoRepository) {
+    public AplicativoService(IAplicativoRepository aplicativoRepository) {
         this.aplicativoRepository = aplicativoRepository;
     }
 

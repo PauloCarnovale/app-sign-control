@@ -10,15 +10,15 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.projarc.appsigncontrol.application.dto.ClienteDto;
 import com.projarc.appsigncontrol.domain.model.ClienteModel;
+import com.projarc.appsigncontrol.domain.persistence.IClienteRepository;
 import com.projarc.appsigncontrol.persistence.entity.ClienteEntity;
-import com.projarc.appsigncontrol.persistence.repository.ClienteRepositoryJPA;
 
 @Service
 public class ClienteService {
     @Autowired
-    private ClienteRepositoryJPA clienteRepository;
+    private IClienteRepository clienteRepository;
 
-    public ClienteService(ClienteRepositoryJPA clienteRepository) {
+    public ClienteService(IClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 

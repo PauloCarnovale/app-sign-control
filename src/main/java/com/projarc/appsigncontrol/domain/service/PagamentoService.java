@@ -9,10 +9,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.projarc.appsigncontrol.application.dto.PagamentoDto;
 import com.projarc.appsigncontrol.domain.model.PagamentoModel;
+import com.projarc.appsigncontrol.domain.persistence.IPagamentoRepository;
 import com.projarc.appsigncontrol.enums.Promocoes;
 import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
 import com.projarc.appsigncontrol.persistence.entity.PagamentoEntity;
-import com.projarc.appsigncontrol.persistence.repository.PagamentoRepositoryJPA;
 import com.projarc.appsigncontrol.enums.PagamentoStatus;
 
 import java.time.LocalDate;
@@ -20,10 +20,10 @@ import java.time.LocalDate;
 @Service
 public class PagamentoService {
     @Autowired
-    private PagamentoRepositoryJPA pagamentoRepository;
+    private IPagamentoRepository pagamentoRepository;
     private AssinaturaService assinaturaService;
 
-    public PagamentoService(PagamentoRepositoryJPA pagamentoRepository, AssinaturaService assinaturaService) {
+    public PagamentoService(IPagamentoRepository pagamentoRepository, AssinaturaService assinaturaService) {
         this.pagamentoRepository = pagamentoRepository;
         this.assinaturaService = assinaturaService;
     }

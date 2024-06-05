@@ -11,26 +11,26 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.projarc.appsigncontrol.application.dto.AssinaturaDto;
 import com.projarc.appsigncontrol.domain.model.AssinaturaModel;
+import com.projarc.appsigncontrol.domain.persistence.IAplicativoRepository;
+import com.projarc.appsigncontrol.domain.persistence.IAssinaturaRepository;
+import com.projarc.appsigncontrol.domain.persistence.IClienteRepository;
 import com.projarc.appsigncontrol.enums.AssinaturaStatus;
 import com.projarc.appsigncontrol.persistence.entity.AplicativoEntity;
 import com.projarc.appsigncontrol.persistence.entity.AssinaturaEntity;
 import com.projarc.appsigncontrol.persistence.entity.ClienteEntity;
-import com.projarc.appsigncontrol.persistence.repository.AplicativoRepositoryJPA;
-import com.projarc.appsigncontrol.persistence.repository.AssinaturaRepositoryJPA;
-import com.projarc.appsigncontrol.persistence.repository.ClienteRepositoryJPA;
 
 import java.util.stream.Collectors;
 
 @Service
 public class AssinaturaService {
     @Autowired
-    private AssinaturaRepositoryJPA assinaturaRepository;
-    private AplicativoRepositoryJPA aplicativoRepository;
-    private ClienteRepositoryJPA clienteRepository;
+    private IAssinaturaRepository assinaturaRepository;
+    private IAplicativoRepository aplicativoRepository;
+    private IClienteRepository clienteRepository;
 
-    public AssinaturaService(AssinaturaRepositoryJPA assinaturaRepository,
-            AplicativoRepositoryJPA aplicativoRepository,
-            ClienteRepositoryJPA clienteRepository) {
+    public AssinaturaService(IAssinaturaRepository assinaturaRepository,
+            IAplicativoRepository aplicativoRepository,
+            IClienteRepository clienteRepository) {
         this.assinaturaRepository = assinaturaRepository;
         this.aplicativoRepository = aplicativoRepository;
         this.clienteRepository = clienteRepository;
